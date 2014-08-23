@@ -1,6 +1,6 @@
 class RelationshipsController < ApplicationController
   
-  before_action :require_login
+  before_filter :require_login
 
   def create
     @user = User.find(params[:relationship][:followed_id])
@@ -19,4 +19,9 @@ class RelationshipsController < ApplicationController
       format.js
     end
   end
+
+      def relationship_params
+      params.require(:relationship).permit(:followed_id, :id)
+    end
+
 end

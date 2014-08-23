@@ -30,7 +30,7 @@ class User < ActiveRecord::Base
 # This method associates the attribute ":avatar" with a file attachment
   has_attached_file :avatar, :styles => { 
   	  :thumb => "150x150>",
-      :square => ["100x100#", :png],
+      :square => ["30x30#", :png],
       :medium => "300x300"
       }, 
   					:default_url => "/assets/images/:style/noimage.png"
@@ -39,7 +39,7 @@ class User < ActiveRecord::Base
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
   
   def following?(other_user)
-    relationships.find_by(followed_id: other_user.id)
+    relationships.where(followed_id: other_user.id).exists?
   end
 
   def follow!(other_user)
@@ -47,8 +47,21 @@ class User < ActiveRecord::Base
   end
 
   def unfollow!(other_user)
-    relationships.find_by(followed_id: other_user.id).destroy
+    relationships.where(followed_id: other_user.id).last.destroy
   end
 
+  def User.new_remember_token
+    SecureRandom.urlsafe_base64
+  end
+
+  def User.digest(token)
+    Digest::SHA1.hexdigest(token.to_s)
+  end
+
+  private
+
+    def create_remember_token
+      self.remember_token = User.digest(User.new_remember_token)
+    end
 
 end

@@ -104,6 +104,6 @@ skip_before_filter :require_login, only: [:index, :new, :create]
     # params.require(:person).permit(:name, :age)
     # Also, you can specialize this method with per-user checking of permissible attributes.
   def user_params
-    params.require(:user).permit(:username, :email, :password, :password_confirmation, :avatar)
+    params.require(:user).permit(:id, :username, :email, :password, :password_confirmation, :avatar)
   end
 end
