@@ -1,14 +1,19 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.16'
-
+gem "paperclip", "~> 4.1"
+gem 'thin'
 gem 'strong_parameters'
 
-gem 'mysql2'
+#gem 'mysql2'
+
+gem 'rails_12factor', group: :production
+
+gem 'pg'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
+
 
 gem 'sorcery'
 
@@ -42,3 +47,4 @@ gem 'rack', '1.4.5'
 
 # To use debugger
 # gem 'debugger'
+ruby '1.9.3'

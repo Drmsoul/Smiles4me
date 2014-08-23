@@ -1,4 +1,7 @@
 Blog::Application.routes.draw do
+  resources :comments
+
+
   resources :showcases
 
 
@@ -17,12 +20,15 @@ Blog::Application.routes.draw do
 
   get "user_sessions/destroy"
 
-  resources :users
-
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
 
   resources :documents
 
-
+  resources :relationships, only: [:create, :destroy]
   resources :articles
 
 
@@ -80,7 +86,6 @@ Blog::Application.routes.draw do
    #root :to => 'welcome#index'
    root :to => 'users#index'
    resources :user_sessions
-   resources :users
    
    resources :password_resets
 

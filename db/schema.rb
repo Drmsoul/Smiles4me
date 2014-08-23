@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140804052540) do
+ActiveRecord::Schema.define(:version => 20140822204557) do
 
   create_table "articles", :force => true do |t|
     t.string   "title"
@@ -19,6 +19,18 @@ ActiveRecord::Schema.define(:version => 20140804052540) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "comments", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "showcase_id"
+    t.string   "content"
+    t.integer  "likes"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "comments", ["showcase_id"], :name => "index_comments_on_showcase_id"
+  add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
   create_table "documents", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -32,6 +44,17 @@ ActiveRecord::Schema.define(:version => 20140804052540) do
     t.datetime "updated_at",    :null => false
   end
 
+  create_table "relationships", :force => true do |t|
+    t.integer  "follower_id"
+    t.integer  "followed_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "relationships", ["followed_id"], :name => "index_relationships_on_followed_id"
+  add_index "relationships", ["follower_id", "followed_id"], :name => "index_relationships_on_follower_id_and_followed_id", :unique => true
+  add_index "relationships", ["follower_id"], :name => "index_relationships_on_follower_id"
+
   create_table "showcases", :force => true do |t|
     t.string   "description"
     t.string   "picture"
@@ -43,6 +66,7 @@ ActiveRecord::Schema.define(:version => 20140804052540) do
   end
 
   create_table "users", :force => true do |t|
+    t.string   "username",                        :null => false
     t.string   "email",                           :null => false
     t.string   "crypted_password",                :null => false
     t.string   "salt",                            :null => false
@@ -53,6 +77,10 @@ ActiveRecord::Schema.define(:version => 20140804052540) do
     t.string   "reset_password_token"
     t.datetime "reset_password_token_expires_at"
     t.datetime "reset_password_email_sent_at"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

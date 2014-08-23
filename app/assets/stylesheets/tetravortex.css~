@@ -1,0 +1,21 @@
+ttitle{
+    color: #7094FF;
+    font-size: 1.8em;
+    font-weight: bold;
+
+}
+
+
+
+#loginbutton {
+
+    background-color: blue;
+    text-color: white;
+}
+
+.tb {
+    text-align: center;
+    color: #7094FF;
+    font-weight:bold;
+
+}

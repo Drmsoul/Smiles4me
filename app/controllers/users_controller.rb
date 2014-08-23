@@ -47,7 +47,7 @@ skip_before_filter :require_login, only: [:index, :new, :create]
 
     respond_to do |format|
       if @user.save
-	redirect_to(:users, notice: 'User was successfully created')
+	     redirect_back_or_to :users, notice: 'User was successfully created'
       else
         format.html { render action: "new" }
         format.json { render json: @user.errors, status: :unprocessable_entity }
@@ -83,12 +83,27 @@ skip_before_filter :require_login, only: [:index, :new, :create]
     end
   end
 
+  def following
+    @title = "Following"
+    @user = User.find(params[:id])
+    @users = @user.followed_users.paginate(page: params[:page])
+    render 'show_follow'
+  end
+
+  def followers
+    @title = "Followers"
+    @user = User.find(params[:id])
+    @users = @user.followers.paginate(page: params[:page])
+    render 'show_follow'
+  end
+
+
   private
 
     # Use this method to whitelist the permissible parameters. Example:
     # params.require(:person).permit(:name, :age)
     # Also, you can specialize this method with per-user checking of permissible attributes.
   def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation)
+    params.require(:user).permit(:username, :email, :password, :password_confirmation, :avatar)
   end
 end

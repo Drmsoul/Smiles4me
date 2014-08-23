@@ -1,8 +1,21 @@
 development:
-    host: localhost
-    adapter: mysql2
-    database: mydb
-    username: root
-    password: mehtrythis12
-
-
+  adapter: postgresql
+  encoding: unicode
+  database: smiles
+  pool: 5
+  username: postgres
+  password: mehtrythis12
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: smiles
+  pool: 5
+  username: postgres
+  password: mehtrythis12
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: smiles
+  pool: 5
+  username: postgres
+  password: mehtrythis12
