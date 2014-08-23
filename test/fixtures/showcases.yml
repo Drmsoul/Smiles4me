@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  id: MyString
+  description: MyString
+  picture: MyString
+  upload_date: MyString
+  likes: 1
+  visits: 1
+
+two:
+  id: MyString
+  description: MyString
+  picture: MyString
+  upload_date: MyString
+  likes: 1
+  visits: 1

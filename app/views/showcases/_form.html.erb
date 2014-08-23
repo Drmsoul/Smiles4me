@@ -1,0 +1,41 @@
+<%= form_for(@showcase) do |f| %>
+  <% if @showcase.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@showcase.errors.count, "error") %> prohibited this showcase from being saved:</h2>
+
+      <ul>
+      <% @showcase.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :id %><br />
+    <%= f.text_field :id %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
+  </div>
+  <div class="field">
+    <%= f.label :picture %><br />
+    <%= f.text_field :picture %>
+  </div>
+  <div class="field">
+    <%= f.label :upload_date %><br />
+    <%= f.text_field :upload_date %>
+  </div>
+  <div class="field">
+    <%= f.label :likes %><br />
+    <%= f.number_field :likes %>
+  </div>
+  <div class="field">
+    <%= f.label :visits %><br />
+    <%= f.number_field :visits %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

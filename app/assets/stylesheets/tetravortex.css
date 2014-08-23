@@ -1,0 +1,94 @@
+ttitle{
+    color: #7094FF;
+    font-size: 1.8em;
+    font-weight: bold;
+
+}
+
+minititle {
+
+    color: #7094FF;
+    font-size: 1.2em;
+    font-weight: bold;
+
+
+}
+
+.centered {
+
+    text-align: center;
+}
+
+#loginbutton {
+
+    background-color: blue;
+    
+}
+
+#mainav {
+
+	margin-bottom: 0px;
+
+}
+
+.tb {
+    text-align: center;
+    color: #7094FF;
+    font-weight:bold;
+
+}
+
+lside {
+
+	text-align: left;
+	border-width: 2px;
+
+
+}
+.centerpane {
+
+	width: 50%
+}
+.thumbpic {
+        text-align:center;
+        display: inline-block;
+     *display:inline; 
+     float: none; 
+}
+
+.panelmain {
+	margin-top: 0px;
+	padding: 25px 50px;
+    height: 90%;
+	background-color: #BDBDBD;
+
+}
+
+.stats {
+  overflow: auto;
+  a {
+    float: left;
+    padding: 0 10px;
+    border-left: 1px solid $grayLighter;
+    color: gray;
+    &:first-child {
+      padding-left: 0;
+      border: 0;
+    }
+    &:hover {
+      text-decoration: none;
+      color: $blue;
+    }
+  }
+  strong {
+    display: block;
+  }
+}
+
+.user_avatars {
+  overflow: auto;
+  margin-top: 10px;
+  .gravatar {
+    margin: 1px 1px;
+  }
+}
