@@ -46538,3 +46538,2119 @@ Served asset /welcome.js - 304 Not Modified (0ms)
 
 Started GET "/assets/medium/Noimage.jpeg" for 127.0.0.1 at 2014-08-23 04:16:04 -0500
 Served asset /medium/Noimage.jpeg - 304 Not Modified (0ms)
+Connecting to database specified by database.yml
+
+
+Started DELETE "/relationships/19" for 127.0.0.1 at 2014-08-23 10:48:36 -0500
+Processing by RelationshipsController#destroy as JS
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"9xIjxn/zqyD9yZ/AsOPj31QaEwlxM8i3umYZs3nESC0=", "commit"=>"Unfollow", "id"=>"19"}
+  [1m[36mUser Load (1.7ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 6 LIMIT 1[0m
+  [1m[35mRelationship Load (2.0ms)[0m  SELECT "relationships".* FROM "relationships" WHERE "relationships"."id" = $1 LIMIT 1  [["id", "19"]]
+  [1m[36mUser Load (1.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 5 LIMIT 1[0m
+  [1m[35mRelationship Load (1.6ms)[0m  SELECT "relationships".* FROM "relationships" WHERE "relationships"."follower_id" = 6 AND "relationships"."followed_id" = 5 ORDER BY "relationships"."id" DESC LIMIT 1
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (4.8ms)[0m  DELETE FROM "relationships" WHERE "relationships"."id" = $1  [["id", 19]]
+  [1m[36m (15.8ms)[0m  [1mCOMMIT[0m
+  Rendered users/_follow.html.erb (2.1ms)
+  [1m[35m (1.4ms)[0m  SELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."follower_id" WHERE "relationships"."followed_id" = 5
+  Rendered relationships/destroy.js.erb (59.6ms)
+Completed 200 OK in 722.5ms (Views: 95.6ms | ActiveRecord: 47.1ms)
+
+
+Started DELETE "/relationships/19" for 127.0.0.1 at 2014-08-23 10:48:37 -0500
+Processing by RelationshipsController#destroy as JS
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"9xIjxn/zqyD9yZ/AsOPj31QaEwlxM8i3umYZs3nESC0=", "commit"=>"Unfollow", "id"=>"19"}
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 6 LIMIT 1[0m
+  [1m[35mRelationship Load (0.7ms)[0m  SELECT "relationships".* FROM "relationships" WHERE "relationships"."id" = $1 LIMIT 1  [["id", "19"]]
+Completed 404 Not Found in 3.6ms
+
+ActiveRecord::RecordNotFound (Couldn't find Relationship with id=19):
+  app/controllers/relationships_controller.rb:15:in `destroy'
+
+
+  Rendered /usr/lib/ruby/vendor_ruby/action_dispatch/middleware/templates/rescues/_trace.erb (1.1ms)
+  Rendered /usr/lib/ruby/vendor_ruby/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.7ms)
+  Rendered /usr/lib/ruby/vendor_ruby/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (5.3ms)
+
+
+Started POST "/relationships" for 127.0.0.1 at 2014-08-23 10:49:00 -0500
+Processing by RelationshipsController#create as JS
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"9xIjxn/zqyD9yZ/AsOPj31QaEwlxM8i3umYZs3nESC0=", "relationship"=>{"followed_id"=>"5"}, "commit"=>"Follow"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 6 LIMIT 1[0m
+  [1m[35mUser Load (0.7ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", "5"]]
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (2.2ms)[0m  INSERT INTO "relationships" ("created_at", "followed_id", "follower_id", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["created_at", Sat, 23 Aug 2014 15:49:00 UTC +00:00], ["followed_id", 5], ["follower_id", 6], ["updated_at", Sat, 23 Aug 2014 15:49:00 UTC +00:00]]
+  [1m[36m (7.7ms)[0m  [1mCOMMIT[0m
+  [1m[35mRelationship Load (0.7ms)[0m  SELECT "relationships".* FROM "relationships" WHERE "relationships"."follower_id" = 6 AND "relationships"."followed_id" = 5 LIMIT 1
+  Rendered users/_unfollow.html.erb (5.2ms)
+  [1m[36m (0.8ms)[0m  [1mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."follower_id" WHERE "relationships"."followed_id" = 5[0m
+  Rendered relationships/create.js.erb (10.1ms)
+Completed 200 OK in 30.6ms (Views: 10.2ms | ActiveRecord: 12.6ms)
+
+
+Started POST "/relationships" for 127.0.0.1 at 2014-08-23 10:49:00 -0500
+Processing by RelationshipsController#create as JS
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"9xIjxn/zqyD9yZ/AsOPj31QaEwlxM8i3umYZs3nESC0=", "relationship"=>{"followed_id"=>"5"}, "commit"=>"Follow"}
+  [1m[35mUser Load (0.8ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 6 LIMIT 1
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", "5"]]
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "relationships" ("created_at", "followed_id", "follower_id", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", Sat, 23 Aug 2014 15:49:00 UTC +00:00], ["followed_id", 5], ["follower_id", 6], ["updated_at", Sat, 23 Aug 2014 15:49:00 UTC +00:00]]
+PG::UniqueViolation: ERROR:  duplicate key value violates unique constraint "index_relationships_on_follower_id_and_followed_id"
+DETAIL:  Key (follower_id, followed_id)=(6, 5) already exists.
+: INSERT INTO "relationships" ("created_at", "followed_id", "follower_id", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"
+  [1m[35m (0.2ms)[0m  ROLLBACK
+Completed 500 Internal Server Error in 6.6ms
+
+ActiveRecord::RecordNotUnique (PG::UniqueViolation: ERROR:  duplicate key value violates unique constraint "index_relationships_on_follower_id_and_followed_id"
+DETAIL:  Key (follower_id, followed_id)=(6, 5) already exists.
+: INSERT INTO "relationships" ("created_at", "followed_id", "follower_id", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"):
+  app/models/user.rb:46:in `follow!'
+  app/controllers/relationships_controller.rb:7:in `create'
+
+
+  Rendered /usr/lib/ruby/vendor_ruby/action_dispatch/middleware/templates/rescues/_trace.erb (1.5ms)
+  Rendered /usr/lib/ruby/vendor_ruby/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.3ms)
+  Rendered /usr/lib/ruby/vendor_ruby/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (8.2ms)
+
+
+Started GET "/users/5" for 127.0.0.1 at 2014-08-23 11:55:45 -0500
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mUser Load (0.9ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 6 LIMIT 1[0m
+  [1m[35mUser Load (0.7ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", "5"]]
+  [1m[36m (1.3ms)[0m  [1mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."follower_id" WHERE "relationships"."followed_id" = 5[0m
+  [1m[35m (1.0ms)[0m  SELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."followed_id" WHERE "relationships"."follower_id" = 5
+  Rendered shared/_stats.html.erb (5.3ms)
+  [1m[36mRelationship Exists (0.7ms)[0m  [1mSELECT 1 AS one FROM "relationships" WHERE "relationships"."follower_id" = 6 AND "relationships"."followed_id" = 5 LIMIT 1[0m
+  [1m[35mRelationship Load (0.7ms)[0m  SELECT "relationships".* FROM "relationships" WHERE "relationships"."follower_id" = 6 AND "relationships"."followed_id" = 5 LIMIT 1
+  Rendered users/_unfollow.html.erb (3.1ms)
+  Rendered users/_follow_form.html.erb (6.7ms)
+  Rendered users/show.html.erb within layouts/application (14.3ms)
+Completed 200 OK in 82.1ms (Views: 74.2ms | ActiveRecord: 5.5ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2014-08-23 11:55:45 -0500
+Served asset /bootstrap.css - 304 Not Modified (4ms)
+
+
+Started GET "/assets/articles.css?body=1" for 127.0.0.1 at 2014-08-23 11:55:45 -0500
+Served asset /articles.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap-theme.css?body=1" for 127.0.0.1 at 2014-08-23 11:55:45 -0500
+Served asset /bootstrap-theme.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap-theme.min.css?body=1" for 127.0.0.1 at 2014-08-23 11:55:45 -0500
+Served asset /bootstrap-theme.min.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2014-08-23 11:55:45 -0500
+Served asset /bootstrap.min.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/comments.css?body=1" for 127.0.0.1 at 2014-08-23 11:55:45 -0500
+Served asset /comments.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/documents.css?body=1" for 127.0.0.1 at 2014-08-23 11:55:45 -0500
+Served asset /documents.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/galleries.css?body=1" for 127.0.0.1 at 2014-08-23 11:55:45 -0500
+Served asset /galleries.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/password_resets.css?body=1" for 127.0.0.1 at 2014-08-23 11:55:45 -0500
+Served asset /password_resets.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2014-08-23 11:55:45 -0500
+Served asset /scaffolds.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/showcases.css?body=1" for 127.0.0.1 at 2014-08-23 11:55:45 -0500
+Served asset /showcases.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/tetravortex.css?body=1" for 127.0.0.1 at 2014-08-23 11:55:45 -0500
+Served asset /tetravortex.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/user_sessions.css?body=1" for 127.0.0.1 at 2014-08-23 11:55:45 -0500
+Served asset /user_sessions.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2014-08-23 11:55:45 -0500
+Served asset /users.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/welcome.css?body=1" for 127.0.0.1 at 2014-08-23 11:55:45 -0500
+Served asset /welcome.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-08-23 11:55:45 -0500
+Served asset /jquery.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2014-08-23 11:55:45 -0500
+Served asset /bootstrap.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-08-23 11:55:45 -0500
+Served asset /jquery_ujs.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/articles.js?body=1" for 127.0.0.1 at 2014-08-23 11:55:45 -0500
+Served asset /articles.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap.min.js?body=1" for 127.0.0.1 at 2014-08-23 11:55:45 -0500
+Served asset /bootstrap.min.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/comments.js?body=1" for 127.0.0.1 at 2014-08-23 11:55:45 -0500
+Served asset /comments.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/documents.js?body=1" for 127.0.0.1 at 2014-08-23 11:55:45 -0500
+Served asset /documents.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/galleries.js?body=1" for 127.0.0.1 at 2014-08-23 11:55:45 -0500
+Served asset /galleries.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/password_resets.js?body=1" for 127.0.0.1 at 2014-08-23 11:55:45 -0500
+Served asset /password_resets.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/showcases.js?body=1" for 127.0.0.1 at 2014-08-23 11:55:45 -0500
+Served asset /showcases.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/user_sessions.js?body=1" for 127.0.0.1 at 2014-08-23 11:55:45 -0500
+Served asset /user_sessions.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2014-08-23 11:55:45 -0500
+Served asset /users.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/welcome.js?body=1" for 127.0.0.1 at 2014-08-23 11:55:45 -0500
+Served asset /welcome.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap.css" for 127.0.0.1 at 2014-08-23 11:55:45 -0500
+Served asset /bootstrap.css - 304 Not Modified (38ms)
+
+
+Started GET "/assets/tetravortex.css" for 127.0.0.1 at 2014-08-23 11:55:45 -0500
+Served asset /tetravortex.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/jquery.js" for 127.0.0.1 at 2014-08-23 11:55:45 -0500
+Served asset /jquery.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-08-23 11:55:45 -0500
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2014-08-23 11:55:45 -0500
+Served asset /bootstrap.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-08-23 11:55:45 -0500
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/articles.js?body=1" for 127.0.0.1 at 2014-08-23 11:55:45 -0500
+Served asset /articles.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.min.js?body=1" for 127.0.0.1 at 2014-08-23 11:55:45 -0500
+Served asset /bootstrap.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/comments.js?body=1" for 127.0.0.1 at 2014-08-23 11:55:45 -0500
+Served asset /comments.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/documents.js?body=1" for 127.0.0.1 at 2014-08-23 11:55:45 -0500
+Served asset /documents.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/galleries.js?body=1" for 127.0.0.1 at 2014-08-23 11:55:45 -0500
+Served asset /galleries.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/password_resets.js?body=1" for 127.0.0.1 at 2014-08-23 11:55:45 -0500
+Served asset /password_resets.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/showcases.js?body=1" for 127.0.0.1 at 2014-08-23 11:55:45 -0500
+Served asset /showcases.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/user_sessions.js?body=1" for 127.0.0.1 at 2014-08-23 11:55:45 -0500
+Served asset /user_sessions.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2014-08-23 11:55:45 -0500
+Served asset /users.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/welcome.js?body=1" for 127.0.0.1 at 2014-08-23 11:55:45 -0500
+Served asset /welcome.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/medium/Noimage.jpeg" for 127.0.0.1 at 2014-08-23 11:55:45 -0500
+Served asset /medium/Noimage.jpeg - 304 Not Modified (1ms)
+
+
+Started DELETE "/relationships/21" for 127.0.0.1 at 2014-08-23 11:56:02 -0500
+Processing by RelationshipsController#destroy as JS
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"9xIjxn/zqyD9yZ/AsOPj31QaEwlxM8i3umYZs3nESC0=", "commit"=>"Unfollow", "id"=>"21"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 6 LIMIT 1[0m
+  [1m[35mRelationship Load (0.3ms)[0m  SELECT "relationships".* FROM "relationships" WHERE "relationships"."id" = $1 LIMIT 1  [["id", "21"]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 5 LIMIT 1[0m
+  [1m[35mRelationship Load (0.3ms)[0m  SELECT "relationships".* FROM "relationships" WHERE "relationships"."follower_id" = 6 AND "relationships"."followed_id" = 5 ORDER BY "relationships"."id" DESC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  DELETE FROM "relationships" WHERE "relationships"."id" = $1  [["id", 21]]
+  [1m[36m (25.2ms)[0m  [1mCOMMIT[0m
+  Rendered users/_follow.html.erb (3.3ms)
+  [1m[35m (0.9ms)[0m  SELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."follower_id" WHERE "relationships"."followed_id" = 5
+  Rendered relationships/destroy.js.erb (7.2ms)
+Completed 200 OK in 41.5ms (Views: 9.9ms | ActiveRecord: 27.7ms)
+
+
+Started DELETE "/relationships/21" for 127.0.0.1 at 2014-08-23 11:56:03 -0500
+Processing by RelationshipsController#destroy as JS
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"9xIjxn/zqyD9yZ/AsOPj31QaEwlxM8i3umYZs3nESC0=", "commit"=>"Unfollow", "id"=>"21"}
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 6 LIMIT 1[0m
+  [1m[35mRelationship Load (0.4ms)[0m  SELECT "relationships".* FROM "relationships" WHERE "relationships"."id" = $1 LIMIT 1  [["id", "21"]]
+Completed 404 Not Found in 2.8ms
+
+ActiveRecord::RecordNotFound (Couldn't find Relationship with id=21):
+  app/controllers/relationships_controller.rb:15:in `destroy'
+
+
+  Rendered /usr/lib/ruby/vendor_ruby/action_dispatch/middleware/templates/rescues/_trace.erb (1.1ms)
+  Rendered /usr/lib/ruby/vendor_ruby/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.9ms)
+  Rendered /usr/lib/ruby/vendor_ruby/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (6.5ms)
+
+
+Started POST "/relationships" for 127.0.0.1 at 2014-08-23 11:56:04 -0500
+Processing by RelationshipsController#create as JS
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"9xIjxn/zqyD9yZ/AsOPj31QaEwlxM8i3umYZs3nESC0=", "relationship"=>{"followed_id"=>"5"}, "commit"=>"Follow"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 6 LIMIT 1[0m
+  [1m[35mUser Load (0.5ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", "5"]]
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "relationships" ("created_at", "followed_id", "follower_id", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["created_at", Sat, 23 Aug 2014 16:56:04 UTC +00:00], ["followed_id", 5], ["follower_id", 6], ["updated_at", Sat, 23 Aug 2014 16:56:04 UTC +00:00]]
+  [1m[36m (21.2ms)[0m  [1mCOMMIT[0m
+  [1m[35mRelationship Load (1.0ms)[0m  SELECT "relationships".* FROM "relationships" WHERE "relationships"."follower_id" = 6 AND "relationships"."followed_id" = 5 LIMIT 1
+  Rendered users/_unfollow.html.erb (3.6ms)
+  [1m[36m (1.0ms)[0m  [1mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."follower_id" WHERE "relationships"."followed_id" = 5[0m
+  Rendered relationships/create.js.erb (7.3ms)
+Completed 200 OK in 37.7ms (Views: 8.7ms | ActiveRecord: 24.6ms)
+
+
+Started POST "/relationships" for 127.0.0.1 at 2014-08-23 11:56:04 -0500
+Processing by RelationshipsController#create as JS
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"9xIjxn/zqyD9yZ/AsOPj31QaEwlxM8i3umYZs3nESC0=", "relationship"=>{"followed_id"=>"5"}, "commit"=>"Follow"}
+  [1m[35mUser Load (0.8ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 6 LIMIT 1
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", "5"]]
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (1.1ms)[0m  [1mINSERT INTO "relationships" ("created_at", "followed_id", "follower_id", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", Sat, 23 Aug 2014 16:56:04 UTC +00:00], ["followed_id", 5], ["follower_id", 6], ["updated_at", Sat, 23 Aug 2014 16:56:04 UTC +00:00]]
+PG::UniqueViolation: ERROR:  duplicate key value violates unique constraint "index_relationships_on_follower_id_and_followed_id"
+DETAIL:  Key (follower_id, followed_id)=(6, 5) already exists.
+: INSERT INTO "relationships" ("created_at", "followed_id", "follower_id", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"
+  [1m[35m (0.2ms)[0m  ROLLBACK
+Completed 500 Internal Server Error in 6.6ms
+
+ActiveRecord::RecordNotUnique (PG::UniqueViolation: ERROR:  duplicate key value violates unique constraint "index_relationships_on_follower_id_and_followed_id"
+DETAIL:  Key (follower_id, followed_id)=(6, 5) already exists.
+: INSERT INTO "relationships" ("created_at", "followed_id", "follower_id", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"):
+  app/models/user.rb:46:in `follow!'
+  app/controllers/relationships_controller.rb:7:in `create'
+
+
+  Rendered /usr/lib/ruby/vendor_ruby/action_dispatch/middleware/templates/rescues/_trace.erb (1.3ms)
+  Rendered /usr/lib/ruby/vendor_ruby/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.2ms)
+  Rendered /usr/lib/ruby/vendor_ruby/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (7.1ms)
+
+
+Started GET "/users/5" for 127.0.0.1 at 2014-08-23 11:56:06 -0500
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mUser Load (0.9ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 6 LIMIT 1[0m
+  [1m[35mUser Load (0.6ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", "5"]]
+  [1m[36m (1.2ms)[0m  [1mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."follower_id" WHERE "relationships"."followed_id" = 5[0m
+  [1m[35m (1.0ms)[0m  SELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."followed_id" WHERE "relationships"."follower_id" = 5
+  Rendered shared/_stats.html.erb (5.0ms)
+  [1m[36mRelationship Exists (0.7ms)[0m  [1mSELECT 1 AS one FROM "relationships" WHERE "relationships"."follower_id" = 6 AND "relationships"."followed_id" = 5 LIMIT 1[0m
+  [1m[35mRelationship Load (0.7ms)[0m  SELECT "relationships".* FROM "relationships" WHERE "relationships"."follower_id" = 6 AND "relationships"."followed_id" = 5 LIMIT 1
+  Rendered users/_unfollow.html.erb (3.4ms)
+  Rendered users/_follow_form.html.erb (6.2ms)
+  Rendered users/show.html.erb within layouts/application (13.1ms)
+Completed 200 OK in 39.7ms (Views: 32.9ms | ActiveRecord: 5.1ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2014-08-23 11:56:06 -0500
+Served asset /bootstrap.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/articles.css?body=1" for 127.0.0.1 at 2014-08-23 11:56:06 -0500
+Served asset /articles.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-theme.css?body=1" for 127.0.0.1 at 2014-08-23 11:56:06 -0500
+Served asset /bootstrap-theme.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-theme.min.css?body=1" for 127.0.0.1 at 2014-08-23 11:56:06 -0500
+Served asset /bootstrap-theme.min.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2014-08-23 11:56:06 -0500
+Served asset /bootstrap.min.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/comments.css?body=1" for 127.0.0.1 at 2014-08-23 11:56:06 -0500
+Served asset /comments.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/documents.css?body=1" for 127.0.0.1 at 2014-08-23 11:56:06 -0500
+Served asset /documents.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/galleries.css?body=1" for 127.0.0.1 at 2014-08-23 11:56:06 -0500
+Served asset /galleries.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/password_resets.css?body=1" for 127.0.0.1 at 2014-08-23 11:56:06 -0500
+Served asset /password_resets.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2014-08-23 11:56:06 -0500
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/showcases.css?body=1" for 127.0.0.1 at 2014-08-23 11:56:06 -0500
+Served asset /showcases.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/tetravortex.css?body=1" for 127.0.0.1 at 2014-08-23 11:56:06 -0500
+Served asset /tetravortex.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/user_sessions.css?body=1" for 127.0.0.1 at 2014-08-23 11:56:06 -0500
+Served asset /user_sessions.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2014-08-23 11:56:06 -0500
+Served asset /users.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/welcome.css?body=1" for 127.0.0.1 at 2014-08-23 11:56:06 -0500
+Served asset /welcome.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-08-23 11:56:06 -0500
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2014-08-23 11:56:06 -0500
+Served asset /bootstrap.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-08-23 11:56:06 -0500
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/articles.js?body=1" for 127.0.0.1 at 2014-08-23 11:56:06 -0500
+Served asset /articles.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.min.js?body=1" for 127.0.0.1 at 2014-08-23 11:56:06 -0500
+Served asset /bootstrap.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/comments.js?body=1" for 127.0.0.1 at 2014-08-23 11:56:06 -0500
+Served asset /comments.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/documents.js?body=1" for 127.0.0.1 at 2014-08-23 11:56:06 -0500
+Served asset /documents.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/galleries.js?body=1" for 127.0.0.1 at 2014-08-23 11:56:06 -0500
+Served asset /galleries.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/password_resets.js?body=1" for 127.0.0.1 at 2014-08-23 11:56:06 -0500
+Served asset /password_resets.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/showcases.js?body=1" for 127.0.0.1 at 2014-08-23 11:56:06 -0500
+Served asset /showcases.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/user_sessions.js?body=1" for 127.0.0.1 at 2014-08-23 11:56:06 -0500
+Served asset /user_sessions.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2014-08-23 11:56:06 -0500
+Served asset /users.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/welcome.js?body=1" for 127.0.0.1 at 2014-08-23 11:56:06 -0500
+Served asset /welcome.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.css" for 127.0.0.1 at 2014-08-23 11:56:06 -0500
+Served asset /bootstrap.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/tetravortex.css" for 127.0.0.1 at 2014-08-23 11:56:06 -0500
+Served asset /tetravortex.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js" for 127.0.0.1 at 2014-08-23 11:56:06 -0500
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-08-23 11:56:07 -0500
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2014-08-23 11:56:07 -0500
+Served asset /bootstrap.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-08-23 11:56:07 -0500
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/articles.js?body=1" for 127.0.0.1 at 2014-08-23 11:56:07 -0500
+Served asset /articles.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.min.js?body=1" for 127.0.0.1 at 2014-08-23 11:56:07 -0500
+Served asset /bootstrap.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/comments.js?body=1" for 127.0.0.1 at 2014-08-23 11:56:07 -0500
+Served asset /comments.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/documents.js?body=1" for 127.0.0.1 at 2014-08-23 11:56:07 -0500
+Served asset /documents.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/galleries.js?body=1" for 127.0.0.1 at 2014-08-23 11:56:07 -0500
+Served asset /galleries.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/password_resets.js?body=1" for 127.0.0.1 at 2014-08-23 11:56:07 -0500
+Served asset /password_resets.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/showcases.js?body=1" for 127.0.0.1 at 2014-08-23 11:56:07 -0500
+Served asset /showcases.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/user_sessions.js?body=1" for 127.0.0.1 at 2014-08-23 11:56:07 -0500
+Served asset /user_sessions.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2014-08-23 11:56:07 -0500
+Served asset /users.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/welcome.js?body=1" for 127.0.0.1 at 2014-08-23 11:56:07 -0500
+Served asset /welcome.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/medium/Noimage.jpeg" for 127.0.0.1 at 2014-08-23 11:56:07 -0500
+Served asset /medium/Noimage.jpeg - 304 Not Modified (0ms)
+
+
+Started GET "/users/5" for 127.0.0.1 at 2014-08-23 11:57:15 -0500
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mUser Load (1.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 6 LIMIT 1[0m
+  [1m[35mUser Load (0.6ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", "5"]]
+  [1m[36m (1.1ms)[0m  [1mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."follower_id" WHERE "relationships"."followed_id" = 5[0m
+  [1m[35m (1.0ms)[0m  SELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."followed_id" WHERE "relationships"."follower_id" = 5
+  Rendered shared/_stats.html.erb (4.6ms)
+  [1m[36mRelationship Exists (0.9ms)[0m  [1mSELECT 1 AS one FROM "relationships" WHERE "relationships"."follower_id" = 6 AND "relationships"."followed_id" = 5 LIMIT 1[0m
+  [1m[35mRelationship Load (0.8ms)[0m  SELECT "relationships".* FROM "relationships" WHERE "relationships"."follower_id" = 6 AND "relationships"."followed_id" = 5 LIMIT 1
+  Rendered users/_unfollow.html.erb (2.3ms)
+  Rendered users/_follow_form.html.erb (4.5ms)
+  Rendered users/show.html.erb within layouts/application (11.8ms)
+Completed 200 OK in 40.5ms (Views: 31.4ms | ActiveRecord: 5.5ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2014-08-23 11:57:15 -0500
+Served asset /bootstrap.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/articles.css?body=1" for 127.0.0.1 at 2014-08-23 11:57:15 -0500
+Served asset /articles.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-theme.css?body=1" for 127.0.0.1 at 2014-08-23 11:57:15 -0500
+Served asset /bootstrap-theme.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-theme.min.css?body=1" for 127.0.0.1 at 2014-08-23 11:57:15 -0500
+Served asset /bootstrap-theme.min.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2014-08-23 11:57:15 -0500
+Served asset /bootstrap.min.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/comments.css?body=1" for 127.0.0.1 at 2014-08-23 11:57:15 -0500
+Served asset /comments.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/documents.css?body=1" for 127.0.0.1 at 2014-08-23 11:57:15 -0500
+Served asset /documents.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/galleries.css?body=1" for 127.0.0.1 at 2014-08-23 11:57:15 -0500
+Served asset /galleries.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/password_resets.css?body=1" for 127.0.0.1 at 2014-08-23 11:57:15 -0500
+Served asset /password_resets.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2014-08-23 11:57:15 -0500
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/showcases.css?body=1" for 127.0.0.1 at 2014-08-23 11:57:15 -0500
+Served asset /showcases.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/tetravortex.css?body=1" for 127.0.0.1 at 2014-08-23 11:57:15 -0500
+Served asset /tetravortex.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/user_sessions.css?body=1" for 127.0.0.1 at 2014-08-23 11:57:15 -0500
+Served asset /user_sessions.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2014-08-23 11:57:15 -0500
+Served asset /users.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/welcome.css?body=1" for 127.0.0.1 at 2014-08-23 11:57:15 -0500
+Served asset /welcome.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-08-23 11:57:15 -0500
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2014-08-23 11:57:15 -0500
+Served asset /bootstrap.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-08-23 11:57:15 -0500
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/articles.js?body=1" for 127.0.0.1 at 2014-08-23 11:57:15 -0500
+Served asset /articles.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.min.js?body=1" for 127.0.0.1 at 2014-08-23 11:57:15 -0500
+Served asset /bootstrap.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/comments.js?body=1" for 127.0.0.1 at 2014-08-23 11:57:15 -0500
+Served asset /comments.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/documents.js?body=1" for 127.0.0.1 at 2014-08-23 11:57:15 -0500
+Served asset /documents.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/galleries.js?body=1" for 127.0.0.1 at 2014-08-23 11:57:15 -0500
+Served asset /galleries.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/password_resets.js?body=1" for 127.0.0.1 at 2014-08-23 11:57:15 -0500
+Served asset /password_resets.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/showcases.js?body=1" for 127.0.0.1 at 2014-08-23 11:57:15 -0500
+Served asset /showcases.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/user_sessions.js?body=1" for 127.0.0.1 at 2014-08-23 11:57:15 -0500
+Served asset /user_sessions.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2014-08-23 11:57:15 -0500
+Served asset /users.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/welcome.js?body=1" for 127.0.0.1 at 2014-08-23 11:57:15 -0500
+Served asset /welcome.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.css" for 127.0.0.1 at 2014-08-23 11:57:15 -0500
+Served asset /bootstrap.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/tetravortex.css" for 127.0.0.1 at 2014-08-23 11:57:15 -0500
+Served asset /tetravortex.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js" for 127.0.0.1 at 2014-08-23 11:57:15 -0500
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-08-23 11:57:15 -0500
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2014-08-23 11:57:15 -0500
+Served asset /bootstrap.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-08-23 11:57:15 -0500
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/articles.js?body=1" for 127.0.0.1 at 2014-08-23 11:57:15 -0500
+Served asset /articles.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.min.js?body=1" for 127.0.0.1 at 2014-08-23 11:57:15 -0500
+Served asset /bootstrap.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/comments.js?body=1" for 127.0.0.1 at 2014-08-23 11:57:15 -0500
+Served asset /comments.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/documents.js?body=1" for 127.0.0.1 at 2014-08-23 11:57:15 -0500
+Served asset /documents.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/galleries.js?body=1" for 127.0.0.1 at 2014-08-23 11:57:15 -0500
+Served asset /galleries.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/password_resets.js?body=1" for 127.0.0.1 at 2014-08-23 11:57:15 -0500
+Served asset /password_resets.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/showcases.js?body=1" for 127.0.0.1 at 2014-08-23 11:57:15 -0500
+Served asset /showcases.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/user_sessions.js?body=1" for 127.0.0.1 at 2014-08-23 11:57:15 -0500
+Served asset /user_sessions.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2014-08-23 11:57:15 -0500
+Served asset /users.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/welcome.js?body=1" for 127.0.0.1 at 2014-08-23 11:57:15 -0500
+Served asset /welcome.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/medium/Noimage.jpeg" for 127.0.0.1 at 2014-08-23 11:57:15 -0500
+Served asset /medium/Noimage.jpeg - 304 Not Modified (0ms)
+
+
+Started DELETE "/relationships/23" for 127.0.0.1 at 2014-08-23 12:08:54 -0500
+Processing by RelationshipsController#destroy as JS
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"9xIjxn/zqyD9yZ/AsOPj31QaEwlxM8i3umYZs3nESC0=", "commit"=>"Unfollow", "id"=>"23"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 6 LIMIT 1[0m
+  [1m[35mRelationship Load (0.2ms)[0m  SELECT "relationships".* FROM "relationships" WHERE "relationships"."id" = $1 LIMIT 1  [["id", "23"]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 5 LIMIT 1[0m
+  [1m[35mRelationship Load (0.2ms)[0m  SELECT "relationships".* FROM "relationships" WHERE "relationships"."follower_id" = 6 AND "relationships"."followed_id" = 5 ORDER BY "relationships"."id" DESC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  DELETE FROM "relationships" WHERE "relationships"."id" = $1  [["id", 23]]
+  [1m[36m (12.1ms)[0m  [1mCOMMIT[0m
+  Rendered users/_follow.html.erb (3.0ms)
+  [1m[35m (1.7ms)[0m  SELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."follower_id" WHERE "relationships"."followed_id" = 5
+  Rendered relationships/destroy.js.erb (8.5ms)
+Completed 200 OK in 26.6ms (Views: 8.5ms | ActiveRecord: 14.9ms)
+
+
+Started DELETE "/relationships/23" for 127.0.0.1 at 2014-08-23 12:08:54 -0500
+Processing by RelationshipsController#destroy as JS
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"9xIjxn/zqyD9yZ/AsOPj31QaEwlxM8i3umYZs3nESC0=", "commit"=>"Unfollow", "id"=>"23"}
+  [1m[36mUser Load (0.9ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 6 LIMIT 1[0m
+  [1m[35mRelationship Load (0.5ms)[0m  SELECT "relationships".* FROM "relationships" WHERE "relationships"."id" = $1 LIMIT 1  [["id", "23"]]
+Completed 404 Not Found in 3.2ms
+
+ActiveRecord::RecordNotFound (Couldn't find Relationship with id=23):
+  app/controllers/relationships_controller.rb:15:in `destroy'
+
+
+  Rendered /usr/lib/ruby/vendor_ruby/action_dispatch/middleware/templates/rescues/_trace.erb (1.3ms)
+  Rendered /usr/lib/ruby/vendor_ruby/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.7ms)
+  Rendered /usr/lib/ruby/vendor_ruby/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (6.2ms)
+
+
+Started POST "/relationships" for 127.0.0.1 at 2014-08-23 12:08:58 -0500
+Processing by RelationshipsController#create as JS
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"9xIjxn/zqyD9yZ/AsOPj31QaEwlxM8i3umYZs3nESC0=", "relationship"=>{"followed_id"=>"5"}, "commit"=>"Follow"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 6 LIMIT 1[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", "5"]]
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "relationships" ("created_at", "followed_id", "follower_id", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["created_at", Sat, 23 Aug 2014 17:08:58 UTC +00:00], ["followed_id", 5], ["follower_id", 6], ["updated_at", Sat, 23 Aug 2014 17:08:58 UTC +00:00]]
+  [1m[36m (11.5ms)[0m  [1mCOMMIT[0m
+  [1m[35mRelationship Load (0.6ms)[0m  SELECT "relationships".* FROM "relationships" WHERE "relationships"."follower_id" = 6 AND "relationships"."followed_id" = 5 LIMIT 1
+  Rendered users/_unfollow.html.erb (4.5ms)
+  [1m[36m (0.7ms)[0m  [1mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."follower_id" WHERE "relationships"."followed_id" = 5[0m
+  Rendered relationships/create.js.erb (10.1ms)
+Completed 200 OK in 30.1ms (Views: 12.1ms | ActiveRecord: 14.1ms)
+
+
+Started POST "/relationships" for 127.0.0.1 at 2014-08-23 12:08:58 -0500
+Processing by RelationshipsController#create as JS
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"9xIjxn/zqyD9yZ/AsOPj31QaEwlxM8i3umYZs3nESC0=", "relationship"=>{"followed_id"=>"5"}, "commit"=>"Follow"}
+  [1m[35mUser Load (0.6ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 6 LIMIT 1
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", "5"]]
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO "relationships" ("created_at", "followed_id", "follower_id", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", Sat, 23 Aug 2014 17:08:58 UTC +00:00], ["followed_id", 5], ["follower_id", 6], ["updated_at", Sat, 23 Aug 2014 17:08:58 UTC +00:00]]
+PG::UniqueViolation: ERROR:  duplicate key value violates unique constraint "index_relationships_on_follower_id_and_followed_id"
+DETAIL:  Key (follower_id, followed_id)=(6, 5) already exists.
+: INSERT INTO "relationships" ("created_at", "followed_id", "follower_id", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"
+  [1m[35m (0.2ms)[0m  ROLLBACK
+Completed 500 Internal Server Error in 5.0ms
+
+ActiveRecord::RecordNotUnique (PG::UniqueViolation: ERROR:  duplicate key value violates unique constraint "index_relationships_on_follower_id_and_followed_id"
+DETAIL:  Key (follower_id, followed_id)=(6, 5) already exists.
+: INSERT INTO "relationships" ("created_at", "followed_id", "follower_id", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"):
+  app/models/user.rb:46:in `follow!'
+  app/controllers/relationships_controller.rb:7:in `create'
+
+
+  Rendered /usr/lib/ruby/vendor_ruby/action_dispatch/middleware/templates/rescues/_trace.erb (1.1ms)
+  Rendered /usr/lib/ruby/vendor_ruby/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.8ms)
+  Rendered /usr/lib/ruby/vendor_ruby/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (6.0ms)
+
+
+Started GET "/users/5" for 127.0.0.1 at 2014-08-23 12:26:36 -0500
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mUser Load (0.9ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 6 LIMIT 1[0m
+  [1m[35mUser Load (0.5ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", "5"]]
+  [1m[36m (1.1ms)[0m  [1mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."follower_id" WHERE "relationships"."followed_id" = 5[0m
+  [1m[35m (0.5ms)[0m  SELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."followed_id" WHERE "relationships"."follower_id" = 5
+  Rendered shared/_stats.html.erb (4.7ms)
+  [1m[36mRelationship Exists (0.7ms)[0m  [1mSELECT 1 AS one FROM "relationships" WHERE "relationships"."follower_id" = 6 AND "relationships"."followed_id" = 5 LIMIT 1[0m
+  [1m[35mRelationship Load (0.8ms)[0m  SELECT "relationships".* FROM "relationships" WHERE "relationships"."follower_id" = 6 AND "relationships"."followed_id" = 5 LIMIT 1
+  Rendered users/_unfollow.html.erb (3.6ms)
+  Rendered users/_follow_form.html.erb (6.3ms)
+  Rendered users/show.html.erb within layouts/application (13.1ms)
+Completed 200 OK in 67.1ms (Views: 60.6ms | ActiveRecord: 4.6ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2014-08-23 12:26:36 -0500
+Served asset /bootstrap.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/articles.css?body=1" for 127.0.0.1 at 2014-08-23 12:26:36 -0500
+Served asset /articles.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-theme.css?body=1" for 127.0.0.1 at 2014-08-23 12:26:36 -0500
+Served asset /bootstrap-theme.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-theme.min.css?body=1" for 127.0.0.1 at 2014-08-23 12:26:36 -0500
+Served asset /bootstrap-theme.min.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2014-08-23 12:26:36 -0500
+Served asset /bootstrap.min.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/comments.css?body=1" for 127.0.0.1 at 2014-08-23 12:26:36 -0500
+Served asset /comments.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/documents.css?body=1" for 127.0.0.1 at 2014-08-23 12:26:36 -0500
+Served asset /documents.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/galleries.css?body=1" for 127.0.0.1 at 2014-08-23 12:26:36 -0500
+Served asset /galleries.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/password_resets.css?body=1" for 127.0.0.1 at 2014-08-23 12:26:36 -0500
+Served asset /password_resets.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2014-08-23 12:26:36 -0500
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/showcases.css?body=1" for 127.0.0.1 at 2014-08-23 12:26:36 -0500
+Served asset /showcases.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/tetravortex.css?body=1" for 127.0.0.1 at 2014-08-23 12:26:36 -0500
+Served asset /tetravortex.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/user_sessions.css?body=1" for 127.0.0.1 at 2014-08-23 12:26:36 -0500
+Served asset /user_sessions.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2014-08-23 12:26:36 -0500
+Served asset /users.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/welcome.css?body=1" for 127.0.0.1 at 2014-08-23 12:26:36 -0500
+Served asset /welcome.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-08-23 12:26:36 -0500
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2014-08-23 12:26:36 -0500
+Served asset /bootstrap.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-08-23 12:26:36 -0500
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/articles.js?body=1" for 127.0.0.1 at 2014-08-23 12:26:36 -0500
+Served asset /articles.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.min.js?body=1" for 127.0.0.1 at 2014-08-23 12:26:36 -0500
+Served asset /bootstrap.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/comments.js?body=1" for 127.0.0.1 at 2014-08-23 12:26:36 -0500
+Served asset /comments.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/documents.js?body=1" for 127.0.0.1 at 2014-08-23 12:26:36 -0500
+Served asset /documents.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/galleries.js?body=1" for 127.0.0.1 at 2014-08-23 12:26:36 -0500
+Served asset /galleries.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/password_resets.js?body=1" for 127.0.0.1 at 2014-08-23 12:26:36 -0500
+Served asset /password_resets.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/showcases.js?body=1" for 127.0.0.1 at 2014-08-23 12:26:36 -0500
+Served asset /showcases.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/user_sessions.js?body=1" for 127.0.0.1 at 2014-08-23 12:26:36 -0500
+Served asset /user_sessions.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2014-08-23 12:26:36 -0500
+Served asset /users.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/welcome.js?body=1" for 127.0.0.1 at 2014-08-23 12:26:36 -0500
+Served asset /welcome.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.css" for 127.0.0.1 at 2014-08-23 12:26:36 -0500
+Served asset /bootstrap.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/tetravortex.css" for 127.0.0.1 at 2014-08-23 12:26:36 -0500
+Served asset /tetravortex.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js" for 127.0.0.1 at 2014-08-23 12:26:36 -0500
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-08-23 12:26:36 -0500
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2014-08-23 12:26:36 -0500
+Served asset /bootstrap.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-08-23 12:26:36 -0500
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/articles.js?body=1" for 127.0.0.1 at 2014-08-23 12:26:36 -0500
+Served asset /articles.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.min.js?body=1" for 127.0.0.1 at 2014-08-23 12:26:36 -0500
+Served asset /bootstrap.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/comments.js?body=1" for 127.0.0.1 at 2014-08-23 12:26:36 -0500
+Served asset /comments.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/documents.js?body=1" for 127.0.0.1 at 2014-08-23 12:26:36 -0500
+Served asset /documents.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/galleries.js?body=1" for 127.0.0.1 at 2014-08-23 12:26:36 -0500
+Served asset /galleries.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/password_resets.js?body=1" for 127.0.0.1 at 2014-08-23 12:26:36 -0500
+Served asset /password_resets.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/showcases.js?body=1" for 127.0.0.1 at 2014-08-23 12:26:36 -0500
+Served asset /showcases.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/user_sessions.js?body=1" for 127.0.0.1 at 2014-08-23 12:26:36 -0500
+Served asset /user_sessions.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2014-08-23 12:26:36 -0500
+Served asset /users.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/welcome.js?body=1" for 127.0.0.1 at 2014-08-23 12:26:36 -0500
+Served asset /welcome.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/medium/Noimage.jpeg" for 127.0.0.1 at 2014-08-23 12:26:36 -0500
+Served asset /medium/Noimage.jpeg - 304 Not Modified (0ms)
+
+
+Started DELETE "/relationships/25" for 127.0.0.1 at 2014-08-23 12:26:41 -0500
+Processing by RelationshipsController#destroy as JS
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"9xIjxn/zqyD9yZ/AsOPj31QaEwlxM8i3umYZs3nESC0=", "commit"=>"Unfollow", "id"=>"25"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 6 LIMIT 1[0m
+  [1m[35mRelationship Load (0.2ms)[0m  SELECT "relationships".* FROM "relationships" WHERE "relationships"."id" = $1 LIMIT 1  [["id", "25"]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 5 LIMIT 1[0m
+  [1m[35mRelationship Load (0.6ms)[0m  SELECT "relationships".* FROM "relationships" WHERE "relationships"."follower_id" = 6 AND "relationships"."followed_id" = 5 ORDER BY "relationships"."id" DESC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  DELETE FROM "relationships" WHERE "relationships"."id" = $1  [["id", 25]]
+  [1m[36m (60.7ms)[0m  [1mCOMMIT[0m
+  Rendered users/_follow.html.erb (3.4ms)
+  [1m[35m (1.3ms)[0m  SELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."follower_id" WHERE "relationships"."followed_id" = 5
+  Rendered relationships/destroy.js.erb (9.2ms)
+Completed 200 OK in 79.3ms (Views: 11.5ms | ActiveRecord: 63.8ms)
+
+
+Started DELETE "/relationships/25" for 127.0.0.1 at 2014-08-23 12:26:41 -0500
+Processing by RelationshipsController#destroy as JS
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"9xIjxn/zqyD9yZ/AsOPj31QaEwlxM8i3umYZs3nESC0=", "commit"=>"Unfollow", "id"=>"25"}
+  [1m[36mUser Load (1.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 6 LIMIT 1[0m
+  [1m[35mRelationship Load (0.2ms)[0m  SELECT "relationships".* FROM "relationships" WHERE "relationships"."id" = $1 LIMIT 1  [["id", "25"]]
+Completed 404 Not Found in 5.2ms
+
+ActiveRecord::RecordNotFound (Couldn't find Relationship with id=25):
+  app/controllers/relationships_controller.rb:15:in `destroy'
+
+
+  Rendered /usr/lib/ruby/vendor_ruby/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+  Rendered /usr/lib/ruby/vendor_ruby/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.7ms)
+  Rendered /usr/lib/ruby/vendor_ruby/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (5.0ms)
+Connecting to database specified by database.yml
+
+
+Started GET "/users/5" for 127.0.0.1 at 2014-08-23 12:45:25 -0500
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mUser Load (1.5ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 6 LIMIT 1[0m
+  [1m[35mUser Load (1.9ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", "5"]]
+  [1m[36m (1.7ms)[0m  [1mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."follower_id" WHERE "relationships"."followed_id" = 5[0m
+  [1m[35m (0.5ms)[0m  SELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."followed_id" WHERE "relationships"."follower_id" = 5
+  Rendered shared/_stats.html.erb (90.8ms)
+  [1m[36mRelationship Exists (0.4ms)[0m  [1mSELECT 1 AS one FROM "relationships" WHERE "relationships"."follower_id" = 6 AND "relationships"."followed_id" = 5 LIMIT 1[0m
+  Rendered users/_follow.html.erb (9.1ms)
+  Rendered users/_follow_form.html.erb (13.7ms)
+  Rendered users/show.html.erb within layouts/application (130.9ms)
+Compiled bootstrap.css  (0ms)  (pid 10391)
+Warning. Error encountered while saving cache /home/soul/Documents/Smiles4me/tmp/cache/sass/4b2eb0d0eba874771526e45c76bde27e2b02d66b/articles.css.scssc: can't dump anonymous class #<Class:0x00000002cabf00>
+Compiled articles.css  (5ms)  (pid 10391)
+Compiled bootstrap-theme.css  (0ms)  (pid 10391)
+Compiled bootstrap-theme.css.map  (0ms)  (pid 10391)
+Compiled bootstrap-theme.min.css  (0ms)  (pid 10391)
+Compiled bootstrap.css.map  (0ms)  (pid 10391)
+Compiled bootstrap.min.css  (0ms)  (pid 10391)
+Warning. Error encountered while saving cache /home/soul/Documents/Smiles4me/tmp/cache/sass/4b2eb0d0eba874771526e45c76bde27e2b02d66b/comments.css.scssc: can't dump anonymous class #<Class:0x00000002cabf00>
+Compiled comments.css  (1ms)  (pid 10391)
+Warning. Error encountered while saving cache /home/soul/Documents/Smiles4me/tmp/cache/sass/4b2eb0d0eba874771526e45c76bde27e2b02d66b/documents.css.scssc: can't dump anonymous class #<Class:0x00000002cabf00>
+Compiled documents.css  (1ms)  (pid 10391)
+Warning. Error encountered while saving cache /home/soul/Documents/Smiles4me/tmp/cache/sass/4b2eb0d0eba874771526e45c76bde27e2b02d66b/galleries.css.scssc: can't dump anonymous class #<Class:0x00000002cabf00>
+Compiled galleries.css  (1ms)  (pid 10391)
+Warning. Error encountered while saving cache /home/soul/Documents/Smiles4me/tmp/cache/sass/4b2eb0d0eba874771526e45c76bde27e2b02d66b/password_resets.css.scssc: can't dump anonymous class #<Class:0x00000002cabf00>
+Compiled password_resets.css  (0ms)  (pid 10391)
+Warning. Error encountered while saving cache /home/soul/Documents/Smiles4me/tmp/cache/sass/4b2eb0d0eba874771526e45c76bde27e2b02d66b/scaffolds.css.scssc: can't dump anonymous class #<Class:0x00000002cabf00>
+Compiled scaffolds.css  (7ms)  (pid 10391)
+Warning. Error encountered while saving cache /home/soul/Documents/Smiles4me/tmp/cache/sass/4b2eb0d0eba874771526e45c76bde27e2b02d66b/showcases.css.scssc: can't dump anonymous class #<Class:0x00000002cabf00>
+Compiled showcases.css  (1ms)  (pid 10391)
+Compiled tetravortex.css  (0ms)  (pid 10391)
+Warning. Error encountered while saving cache /home/soul/Documents/Smiles4me/tmp/cache/sass/4b2eb0d0eba874771526e45c76bde27e2b02d66b/user_sessions.css.scssc: can't dump anonymous class #<Class:0x00000002cabf00>
+Compiled user_sessions.css  (1ms)  (pid 10391)
+Warning. Error encountered while saving cache /home/soul/Documents/Smiles4me/tmp/cache/sass/4b2eb0d0eba874771526e45c76bde27e2b02d66b/users.css.scssc: can't dump anonymous class #<Class:0x00000002cabf00>
+Compiled users.css  (1ms)  (pid 10391)
+Warning. Error encountered while saving cache /home/soul/Documents/Smiles4me/tmp/cache/sass/4b2eb0d0eba874771526e45c76bde27e2b02d66b/welcome.css.scssc: can't dump anonymous class #<Class:0x00000002cabf00>
+Compiled welcome.css  (1ms)  (pid 10391)
+Compiled application.css  (75ms)  (pid 10391)
+Compiled jquery.js  (3ms)  (pid 10391)
+Compiled jquery_ujs.js  (0ms)  (pid 10391)
+Compiled bootstrap.js  (0ms)  (pid 10391)
+Compiled articles.js  (41ms)  (pid 10391)
+Compiled bootstrap.min.js  (0ms)  (pid 10391)
+Compiled comments.js  (1ms)  (pid 10391)
+Compiled documents.js  (0ms)  (pid 10391)
+Compiled galleries.js  (0ms)  (pid 10391)
+Compiled password_resets.js  (0ms)  (pid 10391)
+Compiled showcases.js  (0ms)  (pid 10391)
+Compiled user_sessions.js  (0ms)  (pid 10391)
+Compiled users.js  (0ms)  (pid 10391)
+Compiled welcome.js  (0ms)  (pid 10391)
+Compiled application.js  (93ms)  (pid 10391)
+Completed 200 OK in 429.3ms (Views: 359.5ms | ActiveRecord: 24.0ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2014-08-23 12:45:26 -0500
+Served asset /bootstrap.css - 304 Not Modified (6ms)
+
+
+Started GET "/assets/articles.css?body=1" for 127.0.0.1 at 2014-08-23 12:45:26 -0500
+Served asset /articles.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/bootstrap-theme.css?body=1" for 127.0.0.1 at 2014-08-23 12:45:26 -0500
+Served asset /bootstrap-theme.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap-theme.min.css?body=1" for 127.0.0.1 at 2014-08-23 12:45:26 -0500
+Served asset /bootstrap-theme.min.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2014-08-23 12:45:26 -0500
+Served asset /bootstrap.min.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/comments.css?body=1" for 127.0.0.1 at 2014-08-23 12:45:26 -0500
+Served asset /comments.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/documents.css?body=1" for 127.0.0.1 at 2014-08-23 12:45:26 -0500
+Served asset /documents.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/galleries.css?body=1" for 127.0.0.1 at 2014-08-23 12:45:26 -0500
+Served asset /galleries.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/password_resets.css?body=1" for 127.0.0.1 at 2014-08-23 12:45:26 -0500
+Served asset /password_resets.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2014-08-23 12:45:26 -0500
+Served asset /scaffolds.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/showcases.css?body=1" for 127.0.0.1 at 2014-08-23 12:45:26 -0500
+Served asset /showcases.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/tetravortex.css?body=1" for 127.0.0.1 at 2014-08-23 12:45:26 -0500
+Served asset /tetravortex.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/user_sessions.css?body=1" for 127.0.0.1 at 2014-08-23 12:45:26 -0500
+Served asset /user_sessions.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2014-08-23 12:45:26 -0500
+Served asset /users.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/welcome.css?body=1" for 127.0.0.1 at 2014-08-23 12:45:26 -0500
+Served asset /welcome.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-08-23 12:45:26 -0500
+Served asset /jquery.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-08-23 12:45:26 -0500
+Served asset /jquery_ujs.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2014-08-23 12:45:26 -0500
+Served asset /bootstrap.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/articles.js?body=1" for 127.0.0.1 at 2014-08-23 12:45:26 -0500
+Served asset /articles.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap.min.js?body=1" for 127.0.0.1 at 2014-08-23 12:45:26 -0500
+Served asset /bootstrap.min.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/comments.js?body=1" for 127.0.0.1 at 2014-08-23 12:45:26 -0500
+Served asset /comments.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/documents.js?body=1" for 127.0.0.1 at 2014-08-23 12:45:26 -0500
+Served asset /documents.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/galleries.js?body=1" for 127.0.0.1 at 2014-08-23 12:45:26 -0500
+Served asset /galleries.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/password_resets.js?body=1" for 127.0.0.1 at 2014-08-23 12:45:26 -0500
+Served asset /password_resets.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/showcases.js?body=1" for 127.0.0.1 at 2014-08-23 12:45:26 -0500
+Served asset /showcases.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/user_sessions.js?body=1" for 127.0.0.1 at 2014-08-23 12:45:26 -0500
+Served asset /user_sessions.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2014-08-23 12:45:26 -0500
+Served asset /users.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/welcome.js?body=1" for 127.0.0.1 at 2014-08-23 12:45:26 -0500
+Served asset /welcome.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap.css" for 127.0.0.1 at 2014-08-23 12:45:26 -0500
+Served asset /bootstrap.css - 304 Not Modified (4ms)
+
+
+Started GET "/assets/tetravortex.css" for 127.0.0.1 at 2014-08-23 12:45:26 -0500
+Served asset /tetravortex.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/jquery.js" for 127.0.0.1 at 2014-08-23 12:45:26 -0500
+Served asset /jquery.js - 304 Not Modified (34ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-08-23 12:45:26 -0500
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-08-23 12:45:26 -0500
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2014-08-23 12:45:26 -0500
+Served asset /bootstrap.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/articles.js?body=1" for 127.0.0.1 at 2014-08-23 12:45:26 -0500
+Served asset /articles.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.min.js?body=1" for 127.0.0.1 at 2014-08-23 12:45:26 -0500
+Served asset /bootstrap.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/comments.js?body=1" for 127.0.0.1 at 2014-08-23 12:45:26 -0500
+Served asset /comments.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/documents.js?body=1" for 127.0.0.1 at 2014-08-23 12:45:26 -0500
+Served asset /documents.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/galleries.js?body=1" for 127.0.0.1 at 2014-08-23 12:45:26 -0500
+Served asset /galleries.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/password_resets.js?body=1" for 127.0.0.1 at 2014-08-23 12:45:26 -0500
+Served asset /password_resets.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/showcases.js?body=1" for 127.0.0.1 at 2014-08-23 12:45:26 -0500
+Served asset /showcases.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/user_sessions.js?body=1" for 127.0.0.1 at 2014-08-23 12:45:26 -0500
+Served asset /user_sessions.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2014-08-23 12:45:26 -0500
+Served asset /users.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/welcome.js?body=1" for 127.0.0.1 at 2014-08-23 12:45:26 -0500
+Served asset /welcome.js - 304 Not Modified (0ms)
+
+
+Started POST "/relationships" for 127.0.0.1 at 2014-08-23 12:45:29 -0500
+Processing by RelationshipsController#create as JS
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"9xIjxn/zqyD9yZ/AsOPj31QaEwlxM8i3umYZs3nESC0=", "relationship"=>{"followed_id"=>"5"}, "commit"=>"Follow"}
+  [1m[35mUser Load (1.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 6 LIMIT 1
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", "5"]]
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36mSQL (29.5ms)[0m  [1mINSERT INTO "relationships" ("created_at", "followed_id", "follower_id", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", Sat, 23 Aug 2014 17:45:29 UTC +00:00], ["followed_id", 5], ["follower_id", 6], ["updated_at", Sat, 23 Aug 2014 17:45:29 UTC +00:00]]
+  [1m[35m (8.8ms)[0m  COMMIT
+  [1m[36mRelationship Load (0.8ms)[0m  [1mSELECT "relationships".* FROM "relationships" WHERE "relationships"."follower_id" = 6 AND "relationships"."followed_id" = 5 LIMIT 1[0m
+  Rendered users/_unfollow.html.erb (4.9ms)
+  [1m[35m (1.0ms)[0m  SELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."follower_id" WHERE "relationships"."followed_id" = 5
+  Rendered relationships/create.js.erb (9.7ms)
+Completed 200 OK in 59.7ms (Views: 11.3ms | ActiveRecord: 42.1ms)
+
+
+Started POST "/relationships" for 127.0.0.1 at 2014-08-23 12:45:29 -0500
+Processing by RelationshipsController#create as JS
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"9xIjxn/zqyD9yZ/AsOPj31QaEwlxM8i3umYZs3nESC0=", "relationship"=>{"followed_id"=>"5"}, "commit"=>"Follow"}
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 6 LIMIT 1[0m
+  [1m[35mUser Load (0.6ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", "5"]]
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "relationships" ("created_at", "followed_id", "follower_id", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["created_at", Sat, 23 Aug 2014 17:45:29 UTC +00:00], ["followed_id", 5], ["follower_id", 6], ["updated_at", Sat, 23 Aug 2014 17:45:29 UTC +00:00]]
+PG::UniqueViolation: ERROR:  duplicate key value violates unique constraint "index_relationships_on_follower_id_and_followed_id"
+DETAIL:  Key (follower_id, followed_id)=(6, 5) already exists.
+: INSERT INTO "relationships" ("created_at", "followed_id", "follower_id", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+Completed 500 Internal Server Error in 6.9ms
+
+ActiveRecord::RecordNotUnique (PG::UniqueViolation: ERROR:  duplicate key value violates unique constraint "index_relationships_on_follower_id_and_followed_id"
+DETAIL:  Key (follower_id, followed_id)=(6, 5) already exists.
+: INSERT INTO "relationships" ("created_at", "followed_id", "follower_id", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"):
+  app/models/user.rb:46:in `follow!'
+  app/controllers/relationships_controller.rb:7:in `create'
+
+
+  Rendered /usr/lib/ruby/vendor_ruby/action_dispatch/middleware/templates/rescues/_trace.erb (1.3ms)
+  Rendered /usr/lib/ruby/vendor_ruby/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered /usr/lib/ruby/vendor_ruby/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (7.1ms)
+
+
+Started GET "/users/5" for 127.0.0.1 at 2014-08-23 12:45:33 -0500
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 6 LIMIT 1
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", "5"]]
+  [1m[35m (1.2ms)[0m  SELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."follower_id" WHERE "relationships"."followed_id" = 5
+  [1m[36m (1.1ms)[0m  [1mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."followed_id" WHERE "relationships"."follower_id" = 5[0m
+  Rendered shared/_stats.html.erb (6.8ms)
+  [1m[35mRelationship Exists (0.7ms)[0m  SELECT 1 AS one FROM "relationships" WHERE "relationships"."follower_id" = 6 AND "relationships"."followed_id" = 5 LIMIT 1
+  [1m[36mRelationship Load (0.7ms)[0m  [1mSELECT "relationships".* FROM "relationships" WHERE "relationships"."follower_id" = 6 AND "relationships"."followed_id" = 5 LIMIT 1[0m
+  Rendered users/_unfollow.html.erb (3.3ms)
+  Rendered users/_follow_form.html.erb (5.8ms)
+  Rendered users/show.html.erb within layouts/application (14.6ms)
+Completed 200 OK in 41.0ms (Views: 34.6ms | ActiveRecord: 4.4ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2014-08-23 12:45:33 -0500
+Served asset /bootstrap.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/articles.css?body=1" for 127.0.0.1 at 2014-08-23 12:45:33 -0500
+Served asset /articles.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-theme.css?body=1" for 127.0.0.1 at 2014-08-23 12:45:33 -0500
+Served asset /bootstrap-theme.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-theme.min.css?body=1" for 127.0.0.1 at 2014-08-23 12:45:33 -0500
+Served asset /bootstrap-theme.min.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2014-08-23 12:45:33 -0500
+Served asset /bootstrap.min.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/comments.css?body=1" for 127.0.0.1 at 2014-08-23 12:45:33 -0500
+Served asset /comments.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/documents.css?body=1" for 127.0.0.1 at 2014-08-23 12:45:33 -0500
+Served asset /documents.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/galleries.css?body=1" for 127.0.0.1 at 2014-08-23 12:45:33 -0500
+Served asset /galleries.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/password_resets.css?body=1" for 127.0.0.1 at 2014-08-23 12:45:34 -0500
+Served asset /password_resets.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2014-08-23 12:45:34 -0500
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/showcases.css?body=1" for 127.0.0.1 at 2014-08-23 12:45:34 -0500
+Served asset /showcases.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/tetravortex.css?body=1" for 127.0.0.1 at 2014-08-23 12:45:34 -0500
+Served asset /tetravortex.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/user_sessions.css?body=1" for 127.0.0.1 at 2014-08-23 12:45:34 -0500
+Served asset /user_sessions.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2014-08-23 12:45:34 -0500
+Served asset /users.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/welcome.css?body=1" for 127.0.0.1 at 2014-08-23 12:45:34 -0500
+Served asset /welcome.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-08-23 12:45:34 -0500
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-08-23 12:45:34 -0500
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2014-08-23 12:45:34 -0500
+Served asset /bootstrap.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/articles.js?body=1" for 127.0.0.1 at 2014-08-23 12:45:34 -0500
+Served asset /articles.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.min.js?body=1" for 127.0.0.1 at 2014-08-23 12:45:34 -0500
+Served asset /bootstrap.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/comments.js?body=1" for 127.0.0.1 at 2014-08-23 12:45:34 -0500
+Served asset /comments.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/documents.js?body=1" for 127.0.0.1 at 2014-08-23 12:45:34 -0500
+Served asset /documents.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/galleries.js?body=1" for 127.0.0.1 at 2014-08-23 12:45:34 -0500
+Served asset /galleries.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/password_resets.js?body=1" for 127.0.0.1 at 2014-08-23 12:45:34 -0500
+Served asset /password_resets.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/showcases.js?body=1" for 127.0.0.1 at 2014-08-23 12:45:34 -0500
+Served asset /showcases.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/user_sessions.js?body=1" for 127.0.0.1 at 2014-08-23 12:45:34 -0500
+Served asset /user_sessions.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2014-08-23 12:45:34 -0500
+Served asset /users.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/welcome.js?body=1" for 127.0.0.1 at 2014-08-23 12:45:34 -0500
+Served asset /welcome.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.css" for 127.0.0.1 at 2014-08-23 12:45:34 -0500
+Served asset /bootstrap.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/tetravortex.css" for 127.0.0.1 at 2014-08-23 12:45:34 -0500
+Served asset /tetravortex.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js" for 127.0.0.1 at 2014-08-23 12:45:34 -0500
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-08-23 12:45:34 -0500
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-08-23 12:45:34 -0500
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2014-08-23 12:45:34 -0500
+Served asset /bootstrap.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/articles.js?body=1" for 127.0.0.1 at 2014-08-23 12:45:34 -0500
+Served asset /articles.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.min.js?body=1" for 127.0.0.1 at 2014-08-23 12:45:34 -0500
+Served asset /bootstrap.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/comments.js?body=1" for 127.0.0.1 at 2014-08-23 12:45:34 -0500
+Served asset /comments.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/documents.js?body=1" for 127.0.0.1 at 2014-08-23 12:45:34 -0500
+Served asset /documents.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/galleries.js?body=1" for 127.0.0.1 at 2014-08-23 12:45:34 -0500
+Served asset /galleries.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/password_resets.js?body=1" for 127.0.0.1 at 2014-08-23 12:45:34 -0500
+Served asset /password_resets.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/showcases.js?body=1" for 127.0.0.1 at 2014-08-23 12:45:34 -0500
+Served asset /showcases.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/user_sessions.js?body=1" for 127.0.0.1 at 2014-08-23 12:45:34 -0500
+Served asset /user_sessions.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2014-08-23 12:45:34 -0500
+Served asset /users.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/welcome.js?body=1" for 127.0.0.1 at 2014-08-23 12:45:34 -0500
+Served asset /welcome.js - 304 Not Modified (0ms)
+
+
+Started DELETE "/relationships/27" for 127.0.0.1 at 2014-08-23 12:55:40 -0500
+Processing by RelationshipsController#destroy as JS
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"9xIjxn/zqyD9yZ/AsOPj31QaEwlxM8i3umYZs3nESC0=", "commit"=>"Unfollow", "id"=>"27"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 6 LIMIT 1
+  [1m[36mRelationship Load (0.4ms)[0m  [1mSELECT "relationships".* FROM "relationships" WHERE "relationships"."id" = $1 LIMIT 1[0m  [["id", "27"]]
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 5 LIMIT 1
+  [1m[36mRelationship Load (1.2ms)[0m  [1mSELECT "relationships".* FROM "relationships" WHERE "relationships"."follower_id" = 6 AND "relationships"."followed_id" = 5 ORDER BY "relationships"."id" DESC LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (1.0ms)[0m  [1mDELETE FROM "relationships" WHERE "relationships"."id" = $1[0m  [["id", 27]]
+  [1m[35m (13.7ms)[0m  COMMIT
+  Rendered users/_follow.html.erb (3.9ms)
+  [1m[36m (1.4ms)[0m  [1mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."follower_id" WHERE "relationships"."followed_id" = 5[0m
+  Rendered relationships/destroy.js.erb (9.5ms)
+Completed 200 OK in 62.5ms (Views: 9.3ms | ActiveRecord: 18.7ms)
+
+
+Started DELETE "/relationships/27" for 127.0.0.1 at 2014-08-23 12:55:40 -0500
+Processing by RelationshipsController#destroy as JS
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"9xIjxn/zqyD9yZ/AsOPj31QaEwlxM8i3umYZs3nESC0=", "commit"=>"Unfollow", "id"=>"27"}
+  [1m[35mUser Load (0.9ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 6 LIMIT 1
+  [1m[36mRelationship Load (0.5ms)[0m  [1mSELECT "relationships".* FROM "relationships" WHERE "relationships"."id" = $1 LIMIT 1[0m  [["id", "27"]]
+Completed 404 Not Found in 3.8ms
+
+ActiveRecord::RecordNotFound (Couldn't find Relationship with id=27):
+  app/controllers/relationships_controller.rb:15:in `destroy'
+
+
+  Rendered /usr/lib/ruby/vendor_ruby/action_dispatch/middleware/templates/rescues/_trace.erb (0.9ms)
+  Rendered /usr/lib/ruby/vendor_ruby/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.7ms)
+  Rendered /usr/lib/ruby/vendor_ruby/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (5.0ms)
+
+
+Started POST "/relationships" for 127.0.0.1 at 2014-08-23 12:55:41 -0500
+Processing by RelationshipsController#create as JS
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"9xIjxn/zqyD9yZ/AsOPj31QaEwlxM8i3umYZs3nESC0=", "relationship"=>{"followed_id"=>"5"}, "commit"=>"Follow"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 6 LIMIT 1
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", "5"]]
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO "relationships" ("created_at", "followed_id", "follower_id", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", Sat, 23 Aug 2014 17:55:41 UTC +00:00], ["followed_id", 5], ["follower_id", 6], ["updated_at", Sat, 23 Aug 2014 17:55:41 UTC +00:00]]
+  [1m[35m (3.4ms)[0m  COMMIT
+  [1m[36mRelationship Load (0.8ms)[0m  [1mSELECT "relationships".* FROM "relationships" WHERE "relationships"."follower_id" = 6 AND "relationships"."followed_id" = 5 LIMIT 1[0m
+  Rendered users/_unfollow.html.erb (4.9ms)
+  [1m[35m (1.2ms)[0m  SELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."follower_id" WHERE "relationships"."followed_id" = 5
+  Rendered relationships/create.js.erb (10.1ms)
+Completed 200 OK in 21.5ms (Views: 9.6ms | ActiveRecord: 6.7ms)
+
+
+Started POST "/relationships" for 127.0.0.1 at 2014-08-23 12:55:41 -0500
+Processing by RelationshipsController#create as JS
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"9xIjxn/zqyD9yZ/AsOPj31QaEwlxM8i3umYZs3nESC0=", "relationship"=>{"followed_id"=>"5"}, "commit"=>"Follow"}
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 6 LIMIT 1[0m
+  [1m[35mUser Load (0.6ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", "5"]]
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.9ms)[0m  INSERT INTO "relationships" ("created_at", "followed_id", "follower_id", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["created_at", Sat, 23 Aug 2014 17:55:41 UTC +00:00], ["followed_id", 5], ["follower_id", 6], ["updated_at", Sat, 23 Aug 2014 17:55:41 UTC +00:00]]
+PG::UniqueViolation: ERROR:  duplicate key value violates unique constraint "index_relationships_on_follower_id_and_followed_id"
+DETAIL:  Key (follower_id, followed_id)=(6, 5) already exists.
+: INSERT INTO "relationships" ("created_at", "followed_id", "follower_id", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+Completed 500 Internal Server Error in 6.3ms
+
+ActiveRecord::RecordNotUnique (PG::UniqueViolation: ERROR:  duplicate key value violates unique constraint "index_relationships_on_follower_id_and_followed_id"
+DETAIL:  Key (follower_id, followed_id)=(6, 5) already exists.
+: INSERT INTO "relationships" ("created_at", "followed_id", "follower_id", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"):
+  app/models/user.rb:46:in `follow!'
+  app/controllers/relationships_controller.rb:7:in `create'
+
+
+  Rendered /usr/lib/ruby/vendor_ruby/action_dispatch/middleware/templates/rescues/_trace.erb (1.2ms)
+  Rendered /usr/lib/ruby/vendor_ruby/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.9ms)
+  Rendered /usr/lib/ruby/vendor_ruby/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (6.7ms)
+Connecting to database specified by database.yml
+
+
+Started GET "/users/5" for 127.0.0.1 at 2014-08-23 12:56:32 -0500
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mUser Load (1.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 6 LIMIT 1[0m
+  [1m[35mUser Load (1.9ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", "5"]]
+  [1m[36m (1.7ms)[0m  [1mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."follower_id" WHERE "relationships"."followed_id" = 5[0m
+  [1m[35m (1.0ms)[0m  SELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."followed_id" WHERE "relationships"."follower_id" = 5
+  Rendered shared/_stats.html.erb (92.3ms)
+  [1m[36mRelationship Exists (0.7ms)[0m  [1mSELECT 1 AS one FROM "relationships" WHERE "relationships"."follower_id" = 6 AND "relationships"."followed_id" = 5 LIMIT 1[0m
+  [1m[35mRelationship Load (0.6ms)[0m  SELECT "relationships".* FROM "relationships" WHERE "relationships"."follower_id" = 6 AND "relationships"."followed_id" = 5 LIMIT 1
+  Rendered users/_unfollow.html.erb (10.8ms)
+  Rendered users/_follow_form.html.erb (16.5ms)
+  Rendered users/show.html.erb within layouts/application (134.3ms)
+Completed 200 OK in 233.8ms (Views: 168.3ms | ActiveRecord: 20.8ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2014-08-23 12:56:33 -0500
+Served asset /bootstrap.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/articles.css?body=1" for 127.0.0.1 at 2014-08-23 12:56:33 -0500
+Served asset /articles.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap-theme.css?body=1" for 127.0.0.1 at 2014-08-23 12:56:33 -0500
+Served asset /bootstrap-theme.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap-theme.min.css?body=1" for 127.0.0.1 at 2014-08-23 12:56:33 -0500
+Served asset /bootstrap-theme.min.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2014-08-23 12:56:33 -0500
+Served asset /bootstrap.min.css - 304 Not Modified (26ms)
+
+
+Started GET "/assets/comments.css?body=1" for 127.0.0.1 at 2014-08-23 12:56:33 -0500
+Served asset /comments.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/documents.css?body=1" for 127.0.0.1 at 2014-08-23 12:56:33 -0500
+Served asset /documents.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/galleries.css?body=1" for 127.0.0.1 at 2014-08-23 12:56:33 -0500
+Served asset /galleries.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/password_resets.css?body=1" for 127.0.0.1 at 2014-08-23 12:56:33 -0500
+Served asset /password_resets.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2014-08-23 12:56:33 -0500
+Served asset /scaffolds.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/showcases.css?body=1" for 127.0.0.1 at 2014-08-23 12:56:33 -0500
+Served asset /showcases.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/tetravortex.css?body=1" for 127.0.0.1 at 2014-08-23 12:56:33 -0500
+Served asset /tetravortex.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/user_sessions.css?body=1" for 127.0.0.1 at 2014-08-23 12:56:33 -0500
+Served asset /user_sessions.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2014-08-23 12:56:33 -0500
+Served asset /users.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/welcome.css?body=1" for 127.0.0.1 at 2014-08-23 12:56:33 -0500
+Served asset /welcome.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-08-23 12:56:33 -0500
+Served asset /jquery.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-08-23 12:56:33 -0500
+Served asset /jquery_ujs.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2014-08-23 12:56:33 -0500
+Served asset /bootstrap.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/articles.js?body=1" for 127.0.0.1 at 2014-08-23 12:56:33 -0500
+Served asset /articles.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap.min.js?body=1" for 127.0.0.1 at 2014-08-23 12:56:33 -0500
+Served asset /bootstrap.min.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/comments.js?body=1" for 127.0.0.1 at 2014-08-23 12:56:33 -0500
+Served asset /comments.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/documents.js?body=1" for 127.0.0.1 at 2014-08-23 12:56:33 -0500
+Served asset /documents.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/galleries.js?body=1" for 127.0.0.1 at 2014-08-23 12:56:33 -0500
+Served asset /galleries.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/password_resets.js?body=1" for 127.0.0.1 at 2014-08-23 12:56:33 -0500
+Served asset /password_resets.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/showcases.js?body=1" for 127.0.0.1 at 2014-08-23 12:56:33 -0500
+Served asset /showcases.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/user_sessions.js?body=1" for 127.0.0.1 at 2014-08-23 12:56:33 -0500
+Served asset /user_sessions.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2014-08-23 12:56:33 -0500
+Served asset /users.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/welcome.js?body=1" for 127.0.0.1 at 2014-08-23 12:56:33 -0500
+Served asset /welcome.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap.css" for 127.0.0.1 at 2014-08-23 12:56:33 -0500
+Served asset /bootstrap.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/tetravortex.css" for 127.0.0.1 at 2014-08-23 12:56:33 -0500
+Served asset /tetravortex.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/jquery.js" for 127.0.0.1 at 2014-08-23 12:56:33 -0500
+Served asset /jquery.js - 304 Not Modified (2ms)
+
+
+Started DELETE "/relationships/29" for 127.0.0.1 at 2014-08-23 12:56:36 -0500
+Processing by RelationshipsController#destroy as JS
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"9xIjxn/zqyD9yZ/AsOPj31QaEwlxM8i3umYZs3nESC0=", "commit"=>"Unfollow", "id"=>"29"}
+  [1m[36mUser Load (0.9ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 6 LIMIT 1[0m
+  [1m[35mRelationship Load (1.1ms)[0m  SELECT "relationships".* FROM "relationships" WHERE "relationships"."id" = $1 LIMIT 1  [["id", "29"]]
+  [1m[36mUser Load (0.8ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 5 LIMIT 1[0m
+  [1m[35mRelationship Load (1.2ms)[0m  SELECT "relationships".* FROM "relationships" WHERE "relationships"."follower_id" = 6 AND "relationships"."followed_id" = 5 ORDER BY "relationships"."id" DESC LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (5.1ms)[0m  DELETE FROM "relationships" WHERE "relationships"."id" = $1  [["id", 29]]
+  [1m[36m (102.5ms)[0m  [1mCOMMIT[0m
+  Rendered users/_follow.html.erb (4.1ms)
+  [1m[35m (1.3ms)[0m  SELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."follower_id" WHERE "relationships"."followed_id" = 5
+  Rendered relationships/destroy.js.erb (9.0ms)
+Completed 200 OK in 134.0ms (Views: 12.2ms | ActiveRecord: 113.0ms)
+
+
+Started POST "/relationships" for 127.0.0.1 at 2014-08-23 12:56:37 -0500
+Processing by RelationshipsController#create as JS
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"9xIjxn/zqyD9yZ/AsOPj31QaEwlxM8i3umYZs3nESC0=", "relationship"=>{"followed_id"=>"5"}, "commit"=>"Follow"}
+  [1m[36mUser Load (1.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 6 LIMIT 1[0m
+  [1m[35mUser Load (0.7ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", "5"]]
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (2.4ms)[0m  INSERT INTO "relationships" ("created_at", "followed_id", "follower_id", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["created_at", Sat, 23 Aug 2014 17:56:37 UTC +00:00], ["followed_id", 5], ["follower_id", 6], ["updated_at", Sat, 23 Aug 2014 17:56:37 UTC +00:00]]
+  [1m[36m (15.5ms)[0m  [1mCOMMIT[0m
+  [1m[35mRelationship Load (0.9ms)[0m  SELECT "relationships".* FROM "relationships" WHERE "relationships"."follower_id" = 6 AND "relationships"."followed_id" = 5 LIMIT 1
+  Rendered users/_unfollow.html.erb (6.8ms)
+  [1m[36m (1.0ms)[0m  [1mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."follower_id" WHERE "relationships"."followed_id" = 5[0m
+  Rendered relationships/create.js.erb (11.8ms)
+Completed 200 OK in 42.5ms (Views: 13.0ms | ActiveRecord: 21.8ms)
+
+
+Started GET "/users/5" for 127.0.0.1 at 2014-08-23 12:57:56 -0500
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[35mUser Load (0.5ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 6 LIMIT 1
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", "5"]]
+  [1m[35m (1.3ms)[0m  SELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."follower_id" WHERE "relationships"."followed_id" = 5
+  [1m[36m (0.9ms)[0m  [1mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."followed_id" WHERE "relationships"."follower_id" = 5[0m
+  Rendered shared/_stats.html.erb (7.1ms)
+  [1m[35mRelationship Exists (0.6ms)[0m  SELECT 1 AS one FROM "relationships" WHERE "relationships"."follower_id" = 6 AND "relationships"."followed_id" = 5 LIMIT 1
+  [1m[36mRelationship Load (0.5ms)[0m  [1mSELECT "relationships".* FROM "relationships" WHERE "relationships"."follower_id" = 6 AND "relationships"."followed_id" = 5 LIMIT 1[0m
+  Rendered users/_unfollow.html.erb (1.9ms)
+  Rendered users/_follow_form.html.erb (3.9ms)
+  Rendered users/show.html.erb within layouts/application (12.8ms)
+Completed 200 OK in 25.2ms (Views: 19.5ms | ActiveRecord: 4.0ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2014-08-23 12:57:56 -0500
+Served asset /bootstrap.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/articles.css?body=1" for 127.0.0.1 at 2014-08-23 12:57:56 -0500
+Served asset /articles.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-theme.css?body=1" for 127.0.0.1 at 2014-08-23 12:57:56 -0500
+Served asset /bootstrap-theme.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-theme.min.css?body=1" for 127.0.0.1 at 2014-08-23 12:57:56 -0500
+Served asset /bootstrap-theme.min.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2014-08-23 12:57:56 -0500
+Served asset /bootstrap.min.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/comments.css?body=1" for 127.0.0.1 at 2014-08-23 12:57:56 -0500
+Served asset /comments.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/documents.css?body=1" for 127.0.0.1 at 2014-08-23 12:57:56 -0500
+Served asset /documents.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/galleries.css?body=1" for 127.0.0.1 at 2014-08-23 12:57:56 -0500
+Served asset /galleries.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/password_resets.css?body=1" for 127.0.0.1 at 2014-08-23 12:57:56 -0500
+Served asset /password_resets.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2014-08-23 12:57:56 -0500
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/showcases.css?body=1" for 127.0.0.1 at 2014-08-23 12:57:56 -0500
+Served asset /showcases.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/tetravortex.css?body=1" for 127.0.0.1 at 2014-08-23 12:57:56 -0500
+Served asset /tetravortex.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/user_sessions.css?body=1" for 127.0.0.1 at 2014-08-23 12:57:56 -0500
+Served asset /user_sessions.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2014-08-23 12:57:56 -0500
+Served asset /users.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/welcome.css?body=1" for 127.0.0.1 at 2014-08-23 12:57:56 -0500
+Served asset /welcome.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-08-23 12:57:56 -0500
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-08-23 12:57:56 -0500
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2014-08-23 12:57:56 -0500
+Served asset /bootstrap.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/articles.js?body=1" for 127.0.0.1 at 2014-08-23 12:57:56 -0500
+Served asset /articles.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.min.js?body=1" for 127.0.0.1 at 2014-08-23 12:57:56 -0500
+Served asset /bootstrap.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/comments.js?body=1" for 127.0.0.1 at 2014-08-23 12:57:56 -0500
+Served asset /comments.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/documents.js?body=1" for 127.0.0.1 at 2014-08-23 12:57:56 -0500
+Served asset /documents.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/galleries.js?body=1" for 127.0.0.1 at 2014-08-23 12:57:56 -0500
+Served asset /galleries.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/password_resets.js?body=1" for 127.0.0.1 at 2014-08-23 12:57:56 -0500
+Served asset /password_resets.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/showcases.js?body=1" for 127.0.0.1 at 2014-08-23 12:57:56 -0500
+Served asset /showcases.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/user_sessions.js?body=1" for 127.0.0.1 at 2014-08-23 12:57:56 -0500
+Served asset /user_sessions.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2014-08-23 12:57:56 -0500
+Served asset /users.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/welcome.js?body=1" for 127.0.0.1 at 2014-08-23 12:57:56 -0500
+Served asset /welcome.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.css" for 127.0.0.1 at 2014-08-23 12:57:56 -0500
+Served asset /bootstrap.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/tetravortex.css" for 127.0.0.1 at 2014-08-23 12:57:56 -0500
+Served asset /tetravortex.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js" for 127.0.0.1 at 2014-08-23 12:57:56 -0500
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started DELETE "/relationships/31" for 127.0.0.1 at 2014-08-23 12:57:58 -0500
+Processing by RelationshipsController#destroy as JS
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"9xIjxn/zqyD9yZ/AsOPj31QaEwlxM8i3umYZs3nESC0=", "commit"=>"Unfollow", "id"=>"31"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 6 LIMIT 1
+  [1m[36mRelationship Load (0.5ms)[0m  [1mSELECT "relationships".* FROM "relationships" WHERE "relationships"."id" = $1 LIMIT 1[0m  [["id", "31"]]
+  [1m[35mUser Load (0.5ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 5 LIMIT 1
+  [1m[36mRelationship Load (0.8ms)[0m  [1mSELECT "relationships".* FROM "relationships" WHERE "relationships"."follower_id" = 6 AND "relationships"."followed_id" = 5 ORDER BY "relationships"."id" DESC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mDELETE FROM "relationships" WHERE "relationships"."id" = $1[0m  [["id", 31]]
+  [1m[35m (8.2ms)[0m  COMMIT
+  Rendered users/_follow.html.erb (3.1ms)
+  [1m[36m (1.3ms)[0m  [1mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."follower_id" WHERE "relationships"."followed_id" = 5[0m
+  Rendered relationships/destroy.js.erb (8.2ms)
+Completed 200 OK in 26.5ms (Views: 8.7ms | ActiveRecord: 12.4ms)
+
+
+Started POST "/relationships" for 127.0.0.1 at 2014-08-23 12:58:04 -0500
+Processing by RelationshipsController#create as JS
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"9xIjxn/zqyD9yZ/AsOPj31QaEwlxM8i3umYZs3nESC0=", "relationship"=>{"followed_id"=>"5"}, "commit"=>"Follow"}
+  [1m[35mUser Load (0.9ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 6 LIMIT 1
+  [1m[36mUser Load (0.8ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", "5"]]
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO "relationships" ("created_at", "followed_id", "follower_id", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", Sat, 23 Aug 2014 17:58:04 UTC +00:00], ["followed_id", 5], ["follower_id", 6], ["updated_at", Sat, 23 Aug 2014 17:58:04 UTC +00:00]]
+  [1m[35m (11.2ms)[0m  COMMIT
+  [1m[36mRelationship Load (0.9ms)[0m  [1mSELECT "relationships".* FROM "relationships" WHERE "relationships"."follower_id" = 6 AND "relationships"."followed_id" = 5 LIMIT 1[0m
+  Rendered users/_unfollow.html.erb (5.1ms)
+  [1m[35m (1.0ms)[0m  SELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."follower_id" WHERE "relationships"."followed_id" = 5
+  Rendered relationships/create.js.erb (8.4ms)
+Completed 200 OK in 30.7ms (Views: 8.0ms | ActiveRecord: 15.9ms)
+
+
+Started GET "/users/5" for 127.0.0.1 at 2014-08-23 13:01:23 -0500
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 6 LIMIT 1[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", "5"]]
+  [1m[36m (1.5ms)[0m  [1mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."follower_id" WHERE "relationships"."followed_id" = 5[0m
+  [1m[35m (1.2ms)[0m  SELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."followed_id" WHERE "relationships"."follower_id" = 5
+  Rendered shared/_stats.html.erb (11.0ms)
+  [1m[36mRelationship Exists (0.8ms)[0m  [1mSELECT 1 AS one FROM "relationships" WHERE "relationships"."follower_id" = 6 AND "relationships"."followed_id" = 5 LIMIT 1[0m
+  [1m[35mRelationship Load (0.7ms)[0m  SELECT "relationships".* FROM "relationships" WHERE "relationships"."follower_id" = 6 AND "relationships"."followed_id" = 5 LIMIT 1
+  Rendered users/_unfollow.html.erb (3.0ms)
+  Rendered users/_follow_form.html.erb (6.7ms)
+  Rendered users/show.html.erb within layouts/application (20.3ms)
+Completed 200 OK in 37.2ms (Views: 30.6ms | ActiveRecord: 5.0ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2014-08-23 13:01:23 -0500
+Served asset /bootstrap.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/articles.css?body=1" for 127.0.0.1 at 2014-08-23 13:01:23 -0500
+Served asset /articles.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-theme.css?body=1" for 127.0.0.1 at 2014-08-23 13:01:23 -0500
+Served asset /bootstrap-theme.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-theme.min.css?body=1" for 127.0.0.1 at 2014-08-23 13:01:23 -0500
+Served asset /bootstrap-theme.min.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2014-08-23 13:01:23 -0500
+Served asset /bootstrap.min.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/comments.css?body=1" for 127.0.0.1 at 2014-08-23 13:01:23 -0500
+Served asset /comments.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/documents.css?body=1" for 127.0.0.1 at 2014-08-23 13:01:23 -0500
+Served asset /documents.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/galleries.css?body=1" for 127.0.0.1 at 2014-08-23 13:01:23 -0500
+Served asset /galleries.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/password_resets.css?body=1" for 127.0.0.1 at 2014-08-23 13:01:23 -0500
+Served asset /password_resets.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2014-08-23 13:01:23 -0500
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/showcases.css?body=1" for 127.0.0.1 at 2014-08-23 13:01:23 -0500
+Served asset /showcases.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/tetravortex.css?body=1" for 127.0.0.1 at 2014-08-23 13:01:23 -0500
+Served asset /tetravortex.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/user_sessions.css?body=1" for 127.0.0.1 at 2014-08-23 13:01:23 -0500
+Served asset /user_sessions.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2014-08-23 13:01:23 -0500
+Served asset /users.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/welcome.css?body=1" for 127.0.0.1 at 2014-08-23 13:01:23 -0500
+Served asset /welcome.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-08-23 13:01:23 -0500
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-08-23 13:01:23 -0500
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2014-08-23 13:01:23 -0500
+Served asset /bootstrap.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/articles.js?body=1" for 127.0.0.1 at 2014-08-23 13:01:23 -0500
+Served asset /articles.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.min.js?body=1" for 127.0.0.1 at 2014-08-23 13:01:23 -0500
+Served asset /bootstrap.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/comments.js?body=1" for 127.0.0.1 at 2014-08-23 13:01:23 -0500
+Served asset /comments.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/documents.js?body=1" for 127.0.0.1 at 2014-08-23 13:01:23 -0500
+Served asset /documents.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/galleries.js?body=1" for 127.0.0.1 at 2014-08-23 13:01:23 -0500
+Served asset /galleries.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/password_resets.js?body=1" for 127.0.0.1 at 2014-08-23 13:01:23 -0500
+Served asset /password_resets.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/showcases.js?body=1" for 127.0.0.1 at 2014-08-23 13:01:23 -0500
+Served asset /showcases.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/user_sessions.js?body=1" for 127.0.0.1 at 2014-08-23 13:01:23 -0500
+Served asset /user_sessions.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2014-08-23 13:01:23 -0500
+Served asset /users.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/welcome.js?body=1" for 127.0.0.1 at 2014-08-23 13:01:23 -0500
+Served asset /welcome.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.css" for 127.0.0.1 at 2014-08-23 13:01:23 -0500
+Served asset /bootstrap.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/tetravortex.css" for 127.0.0.1 at 2014-08-23 13:01:23 -0500
+Served asset /tetravortex.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js" for 127.0.0.1 at 2014-08-23 13:01:23 -0500
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started DELETE "/relationships/32" for 127.0.0.1 at 2014-08-23 13:01:26 -0500
+Processing by RelationshipsController#destroy as JS
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"9xIjxn/zqyD9yZ/AsOPj31QaEwlxM8i3umYZs3nESC0=", "commit"=>"Unfollow", "id"=>"32"}
+  [1m[36mUser Load (0.8ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 6 LIMIT 1[0m
+  [1m[35mRelationship Load (0.7ms)[0m  SELECT "relationships".* FROM "relationships" WHERE "relationships"."id" = $1 LIMIT 1  [["id", "32"]]
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 5 LIMIT 1[0m
+  [1m[35mRelationship Load (0.6ms)[0m  SELECT "relationships".* FROM "relationships" WHERE "relationships"."follower_id" = 6 AND "relationships"."followed_id" = 5 ORDER BY "relationships"."id" DESC LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  DELETE FROM "relationships" WHERE "relationships"."id" = $1  [["id", 32]]
+  [1m[36m (12.5ms)[0m  [1mCOMMIT[0m
+  Rendered users/_follow.html.erb (1.3ms)
+  [1m[35m (1.2ms)[0m  SELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."follower_id" WHERE "relationships"."followed_id" = 5
+  Rendered relationships/destroy.js.erb (5.1ms)
+Completed 200 OK in 30.2ms (Views: 5.4ms | ActiveRecord: 16.8ms)
+
+
+Started POST "/relationships" for 127.0.0.1 at 2014-08-23 13:01:27 -0500
+Processing by RelationshipsController#create as JS
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"9xIjxn/zqyD9yZ/AsOPj31QaEwlxM8i3umYZs3nESC0=", "relationship"=>{"followed_id"=>"5"}, "commit"=>"Follow"}
+  [1m[36mUser Load (0.8ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 6 LIMIT 1[0m
+  [1m[35mUser Load (0.7ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", "5"]]
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  INSERT INTO "relationships" ("created_at", "followed_id", "follower_id", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["created_at", Sat, 23 Aug 2014 18:01:27 UTC +00:00], ["followed_id", 5], ["follower_id", 6], ["updated_at", Sat, 23 Aug 2014 18:01:27 UTC +00:00]]
+  [1m[36m (8.1ms)[0m  [1mCOMMIT[0m
+  [1m[35mRelationship Load (0.9ms)[0m  SELECT "relationships".* FROM "relationships" WHERE "relationships"."follower_id" = 6 AND "relationships"."followed_id" = 5 LIMIT 1
+  Rendered users/_unfollow.html.erb (4.5ms)
+  [1m[36m (1.1ms)[0m  [1mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."follower_id" WHERE "relationships"."followed_id" = 5[0m
+  Rendered relationships/create.js.erb (9.8ms)
+Completed 200 OK in 31.5ms (Views: 10.6ms | ActiveRecord: 12.3ms)
+
+
+Started DELETE "/relationships/33" for 127.0.0.1 at 2014-08-23 13:01:33 -0500
+Processing by RelationshipsController#destroy as JS
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"9xIjxn/zqyD9yZ/AsOPj31QaEwlxM8i3umYZs3nESC0=", "commit"=>"Unfollow", "id"=>"33"}
+  [1m[35mUser Load (0.5ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 6 LIMIT 1
+  [1m[36mRelationship Load (0.5ms)[0m  [1mSELECT "relationships".* FROM "relationships" WHERE "relationships"."id" = $1 LIMIT 1[0m  [["id", "33"]]
+  [1m[35mUser Load (0.5ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 5 LIMIT 1
+  [1m[36mRelationship Load (0.7ms)[0m  [1mSELECT "relationships".* FROM "relationships" WHERE "relationships"."follower_id" = 6 AND "relationships"."followed_id" = 5 ORDER BY "relationships"."id" DESC LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.7ms)[0m  [1mDELETE FROM "relationships" WHERE "relationships"."id" = $1[0m  [["id", 33]]
+  [1m[35m (8.7ms)[0m  COMMIT
+  Rendered users/_follow.html.erb (3.0ms)
+  [1m[36m (1.1ms)[0m  [1mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."follower_id" WHERE "relationships"."followed_id" = 5[0m
+  Rendered relationships/destroy.js.erb (6.6ms)
+Completed 200 OK in 27.8ms (Views: 9.0ms | ActiveRecord: 12.9ms)
+
+
+Started POST "/relationships" for 127.0.0.1 at 2014-08-23 13:01:34 -0500
+Processing by RelationshipsController#create as JS
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"9xIjxn/zqyD9yZ/AsOPj31QaEwlxM8i3umYZs3nESC0=", "relationship"=>{"followed_id"=>"5"}, "commit"=>"Follow"}
+  [1m[35mUser Load (0.6ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 6 LIMIT 1
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", "5"]]
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO "relationships" ("created_at", "followed_id", "follower_id", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", Sat, 23 Aug 2014 18:01:34 UTC +00:00], ["followed_id", 5], ["follower_id", 6], ["updated_at", Sat, 23 Aug 2014 18:01:34 UTC +00:00]]
+  [1m[35m (7.8ms)[0m  COMMIT
+  [1m[36mRelationship Load (0.4ms)[0m  [1mSELECT "relationships".* FROM "relationships" WHERE "relationships"."follower_id" = 6 AND "relationships"."followed_id" = 5 LIMIT 1[0m
+  Rendered users/_unfollow.html.erb (4.5ms)
+  [1m[35m (1.3ms)[0m  SELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."follower_id" WHERE "relationships"."followed_id" = 5
+  Rendered relationships/create.js.erb (10.3ms)
+Completed 200 OK in 28.9ms (Views: 10.2ms | ActiveRecord: 11.8ms)
