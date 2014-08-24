@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
-  attr_accessible :username,:password_confirmation,:password,:crypted_password, :email, :salt, :avatar
+  attr_accessible :id, :username,:password_confirmation,:password,:crypted_password, :email, :salt, :avatar, :gallery
+ 
+  after_create :make_gallery
 
   authenticates_with_sorcery!
 
@@ -37,7 +39,13 @@ class User < ActiveRecord::Base
 
    # Validate the attached image is image/jpg, image/png, etc
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
-  
+
+
+  def make_gallery
+      create_gallery(:description => "My Gallery")
+  end
+
+
   def following?(other_user)
     relationships.where(followed_id: other_user.id).exists?
   end

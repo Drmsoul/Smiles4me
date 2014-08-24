@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140822204557) do
+ActiveRecord::Schema.define(:version => 20140823222442) do
 
   create_table "articles", :force => true do |t|
     t.string   "title"
@@ -38,11 +38,14 @@ ActiveRecord::Schema.define(:version => 20140822204557) do
   end
 
   create_table "galleries", :force => true do |t|
-    t.string   "showcase_list"
+    t.integer  "user_id"
     t.string   "description"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
+
+  add_index "galleries", ["id"], :name => "index_galleries_on_id"
+  add_index "galleries", ["user_id"], :name => "index_galleries_on_user_id"
 
   create_table "relationships", :force => true do |t|
     t.integer  "follower_id"
@@ -56,14 +59,21 @@ ActiveRecord::Schema.define(:version => 20140822204557) do
   add_index "relationships", ["follower_id"], :name => "index_relationships_on_follower_id"
 
   create_table "showcases", :force => true do |t|
+    t.integer  "gallery_id"
     t.string   "description"
-    t.string   "picture"
     t.string   "upload_date"
     t.integer  "likes"
     t.integer  "visits"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+    t.string   "canvas_file_name"
+    t.string   "canvas_content_type"
+    t.integer  "canvas_file_size"
+    t.datetime "canvas_updated_at"
   end
+
+  add_index "showcases", ["gallery_id"], :name => "index_showcases_on_gallery_id"
+  add_index "showcases", ["id"], :name => "index_showcases_on_id"
 
   create_table "users", :force => true do |t|
     t.string   "username",                        :null => false

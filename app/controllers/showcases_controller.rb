@@ -14,7 +14,8 @@ class ShowcasesController < ApplicationController
   # GET /showcases/1.json
   def show
     @showcase = Showcase.find(params[:id])
-
+    @gallery = Gallery.find(params[:gallery])
+    @user = Gallery.find(params[:gallery]).user
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @showcase }
@@ -87,6 +88,6 @@ class ShowcasesController < ApplicationController
     # params.require(:person).permit(:name, :age)
     # Also, you can specialize this method with per-user checking of permissible attributes.
     def showcase_params
-      params.require(:showcase).permit(:description, :id, :likes, :canvas, :upload_date, :visits)
+      params.require(:showcase).permit(:id,:gallery, :description, :likes, :canvas, :upload_date, :visits)
     end
 end

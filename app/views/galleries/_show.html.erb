@@ -1,15 +1,22 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+
+
+
   <b>Id:</b>
   <%= @gallery.id %>
 </p>
+
 
 
 <p>
   <b>Description:</b>
   <%= @gallery.description %>
 </p>
+
+<%= link_to "Add New Showcase", showcases_path(New), {:remote => true, 'data-controls-modal' =>  "modal-window", 'data-backdrop' => true, 'data-keyboard' => true} %>
+
 
 
 <%= link_to 'Edit', edit_gallery_path(@gallery) %> |

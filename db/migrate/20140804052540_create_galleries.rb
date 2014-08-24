@@ -3,10 +3,11 @@ class CreateGalleries < ActiveRecord::Migration
     create_table :galleries do |t|
       t.belongs_to :user
       t.string :id
-      t.string :showcase_list
       t.string :description
-
       t.timestamps
     end
+
+    add_index :galleries, :id
+    add_index :galleries, :user_id
   end
 end

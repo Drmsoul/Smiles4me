@@ -17,7 +17,7 @@ skip_before_filter :require_login, only: [:index, :new, :create]
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
-
+    @gallery = @user.gallery
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @user }
@@ -45,9 +45,11 @@ skip_before_filter :require_login, only: [:index, :new, :create]
   def create
     @user = User.new(user_params)
 
+
+
     respond_to do |format|
       if @user.save
-	     redirect_back_or_to :users, notice: 'User was successfully created'
+	     redirect_to :users, notice: 'User was successfully created'
       else
         format.html { render action: "new" }
         format.json { render json: @user.errors, status: :unprocessable_entity }
@@ -104,6 +106,6 @@ skip_before_filter :require_login, only: [:index, :new, :create]
     # params.require(:person).permit(:name, :age)
     # Also, you can specialize this method with per-user checking of permissible attributes.
   def user_params
-    params.require(:user).permit(:id, :username, :email, :password, :password_confirmation, :avatar)
+    params.require(:user).permit(:id, :username, :email, :password, :password_confirmation, :avatar, :gallery)
   end
 end

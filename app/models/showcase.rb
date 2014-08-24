@@ -1,10 +1,12 @@
 class Showcase < ActiveRecord::Base
-  attr_accessible :description, :id, :likes, :canvas, :upload_date, :visits
+  attr_accessible :id, :gallery, :description, :likes, :canvas, :upload_date, :visits
 
 
-has_many :comments
+has_many :comments, dependent: :destroy
 
 belongs_to :gallery
+
+
 
 
   has_attached_file :canvas, :styles => { 
@@ -17,5 +19,9 @@ belongs_to :gallery
    # Validate the attached image is image/jpg, image/png, etc
   validates_attachment_content_type :canvas, :content_type => /\Aimage\/.*\Z/
 
+  validates :id, presence: true
+  validates :gallery, presence: true
+
+  
 
 end

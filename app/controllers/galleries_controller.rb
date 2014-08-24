@@ -14,6 +14,9 @@ class GalleriesController < ApplicationController
   # GET /galleries/1.json
   def show
     @gallery = Gallery.find(params[:id])
+    @title = "Gallery"
+    @user = @gallery.user
+    
 
     respond_to do |format|
       format.html # show.html.erb
@@ -40,6 +43,12 @@ class GalleriesController < ApplicationController
   # POST /galleries
   # POST /galleries.json
   def create
+
+    if (gallery_params[:user])== nil
+      gallery_params[:user] = @user 
+    end
+
+
     @gallery = Gallery.new(gallery_params)
 
     respond_to do |format|
@@ -81,12 +90,14 @@ class GalleriesController < ApplicationController
     end
   end
 
+
+
   private
 
     # Use this method to whitelist the permissible parameters. Example:
     # params.require(:person).permit(:name, :age)
     # Also, you can specialize this method with per-user checking of permissible attributes.
     def gallery_params
-      params.require(:gallery).permit(:description, :id, :showcase_list)
+      params.require(:gallery).permit(:user, :description, :id)
     end
 end
