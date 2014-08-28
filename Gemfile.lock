@@ -30,6 +30,7 @@ GEM
       multi_json (~> 1.0)
     arel (3.0.3)
     bcrypt (3.1.7)
+    bcrypt (3.1.7-x86-mingw32)
     builder (3.2.2)
     climate_control (0.0.3)
       activesupport (>= 3.0)
@@ -45,6 +46,7 @@ GEM
     daemons (1.1.9)
     erubis (2.7.0)
     eventmachine (1.0.3)
+    eventmachine (1.0.3-x86-mingw32)
     execjs (2.2.0)
     faraday (0.9.0)
       multipart-post (>= 1.2, < 3)
@@ -77,6 +79,7 @@ GEM
       cocaine (~> 0.5.3)
       mime-types
     pg (0.17.1)
+    pg (0.17.1-x86-mingw32)
     polyglot (0.3.5)
     rack (1.4.5)
     rack-cache (1.2)
@@ -148,6 +151,7 @@ GEM
 
 PLATFORMS
   ruby
+  x86-mingw32
 
 DEPENDENCIES
   coffee-rails (~> 3.2.1)
