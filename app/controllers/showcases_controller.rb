@@ -29,7 +29,9 @@ class ShowcasesController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @showcase }
+      format.js
+      #format.json { render json: @showcase }
+      
     end
   end
 
