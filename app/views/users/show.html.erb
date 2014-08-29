@@ -2,9 +2,10 @@
 
 <div class="jumbotron">
 <div class="row">
+  
   <lside><div class="col-md-3">
-  	
   	 <ul class="span5">
+<<<<<<< HEAD
           
      
  
@@ -32,38 +33,47 @@
                       <%= render 'shared/stats' %>
                       <%= render 'follow_form' %>
 
+=======
+        <div class="panel panel-primary">
+          <div class="panel-heading" align="center">
+            <a href="#" class="thumbpic thumbnail">
+              <% if @user.avatar.file? %>
+                <%= image_tag @user.avatar.url(:thumb) %>
+              <% else %>
+                <%= image_tag("medium/Noimage.jpeg", size: "150x150", alt: "Avatar", class: "img-circle") %>
+              <% end %>
+            </a>
+            </br>
+            <div class= "centered">
+              <minititle>
+                <span class="glyphicon glyphicon-user"></span>
+                <%= @user.username %>
+              </minititle>
+>>>>>>> b943ba02e6ff276dab26f0f4fb8606cb21f8f1d1
             </div>
-     </ul>
-
-
-
-
-  </div></lside>
+          </br>
+          <%= link_to "Edit Profile", edit_user_path(current_user.id) %>
+          </div>
+          <%= render 'shared/stats' %>
+          <%= render 'follow_form' %>
+        </div>
+      </ul>
+    </div>
+  </lside>
+  
   <div class="col-md-9">
-
 		<div class="row">
 		  <div class="col-sm-6 col-md-12">
 		    <div class="thumbnail">
-		      
-
 		      <div class="caption">
-             <ul class="nav nav-pills">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#">Profile</a></li>
-                <li><a href="#">Messages</a></li>
-              </ul>
-
-
-
-            <div>
-              
-                
-
-
-
-            </div>
+            <ul class="nav nav-pills">
+              <li class="active"><a href="#">Home</a></li>
+              <li><a href="#">Profile</a></li>
+              <li><a href="#">Messages</a></li>
+            </ul>
 
 		        <h3>Galleries</h3>
+<<<<<<< HEAD
 
 
             <%= link_to "Add New Showcase", new_showcase_path(), {:remote => true, 'data-controls-modal' =>  "modal-window", 'data-backdrop' => true, 'data-keyboard' => true} %>
@@ -81,15 +91,17 @@
   </div>
 </div>
 
+=======
+            <%= render 'galleries/show' %> 
+>>>>>>> b943ba02e6ff276dab26f0f4fb8606cb21f8f1d1
 		        <p>...</p>
 		        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-
 		      </div>
 		    </div>
-		  </div>
-		  
+		  </div>  
 		</div>
   </div>
+
 </div>
 
 
