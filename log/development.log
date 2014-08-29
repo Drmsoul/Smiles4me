@@ -86257,3 +86257,4 @@ ActionController::RoutingError (No route matches [GET] "/assets/loading.gif"):
 
   Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-3.2.16/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.0ms)
 >>>>>>> b943ba02e6ff276dab26f0f4fb8606cb21f8f1d1
+Connecting to database specified by database.yml

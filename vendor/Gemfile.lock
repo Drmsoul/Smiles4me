@@ -32,8 +32,12 @@ GEM
     autoprefixer-rails (3.0.0.20140821)
       execjs
     bcrypt (3.1.7)
+<<<<<<< HEAD
     bootstrap-sass (3.2.0.1)
       sass (~> 3.2)
+=======
+    bcrypt (3.1.7-x86-mingw32)
+>>>>>>> b943ba02e6ff276dab26f0f4fb8606cb21f8f1d1
     builder (3.2.2)
     climate_control (0.0.3)
       activesupport (>= 3.0)
@@ -49,6 +53,7 @@ GEM
     daemons (1.1.9)
     erubis (2.7.0)
     eventmachine (1.0.3)
+    eventmachine (1.0.3-x86-mingw32)
     execjs (2.2.0)
     faraday (0.9.0)
       multipart-post (>= 1.2, < 3)
@@ -81,6 +86,7 @@ GEM
       cocaine (~> 0.5.3)
       mime-types
     pg (0.17.1)
+    pg (0.17.1-x86-mingw32)
     polyglot (0.3.5)
     rack (1.4.5)
     rack-cache (1.2)
@@ -152,6 +158,7 @@ GEM
 
 PLATFORMS
   ruby
+  x86-mingw32
 
 DEPENDENCIES
   autoprefixer-rails
