@@ -1,39 +1,12 @@
 <p id="notice"><%= notice %></p>
 
+
 <div class="jumbotron">
 <div class="row">
   
   <lside><div class="col-md-3">
   	 <ul class="span5">
-<<<<<<< HEAD
-          
-     
- 
 
-            <div class="panel panel-primary">
-                
-                <div class="panel-heading span3">
-
-                              <div class= "centered"><minititle>
-                              <span class="glyphicon glyphicon-user"></span>
-                              <%= @user.username %></minititle></div>
-
-                    <a href="#" class="thumbpic thumbnail">
-
-                      <% if @user.avatar.file? %>
-                        <%= image_tag @user.avatar.url(:medium) %>
-                      <% else %>
-                        <><%= image_tag("medium/Noimage.jpeg", size: "150x150", alt: "Avatar") %>
-                      <% end %>
-
-                    </a>
-                  <h3 class="panel-title">Panel title</h3>
-                </div>
-
-                      <%= render 'shared/stats' %>
-                      <%= render 'follow_form' %>
-
-=======
         <div class="panel panel-primary">
           <div class="panel-heading" align="center">
             <a href="#" class="thumbpic thumbnail">
@@ -49,7 +22,7 @@
                 <span class="glyphicon glyphicon-user"></span>
                 <%= @user.username %>
               </minititle>
->>>>>>> b943ba02e6ff276dab26f0f4fb8606cb21f8f1d1
+
             </div>
           </br>
           <%= link_to "Edit Profile", edit_user_path(current_user.id) %>
@@ -73,27 +46,9 @@
             </ul>
 
 		        <h3>Galleries</h3>
-<<<<<<< HEAD
 
+            <%= render 'galleries/show' %>
 
-            <%= link_to "Add New Showcase", new_showcase_path(), {:remote => true, 'data-controls-modal' =>  "modal-window", 'data-backdrop' => true, 'data-keyboard' => true} %>
-            <div class="modal hide fade">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-    <h3 class="modal-heading">Modal header</h3>
-  </div>
-  <div class="modal-body">
-    <p>One fine body…</p>
-  </div>
-  <div class="modal-footer">
-    <a href="#" class="btn" data-dismiss="modal">Close</a>
-    <a href="#" class="btn btn-primary">Add to Cart</a>
-  </div>
-</div>
-
-=======
-            <%= render 'galleries/show' %> 
->>>>>>> b943ba02e6ff276dab26f0f4fb8606cb21f8f1d1
 		        <p>...</p>
 		        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
 		      </div>

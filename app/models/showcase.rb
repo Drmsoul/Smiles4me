@@ -17,9 +17,11 @@ belongs_to :gallery
   					:default_url => "/assets/images/:style/noimage.png"
 
    # Validate the attached image is image/jpg, image/png, etc
+  
+  default_scope -> { order('created_at DESC') }
   validates_attachment_content_type :canvas, :content_type => /\Aimage\/.*\Z/
 
-  validates :id, presence: true
+  
   validates :gallery, presence: true
 
   

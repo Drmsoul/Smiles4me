@@ -2,7 +2,7 @@ Blog::Application.routes.draw do
   resources :comments
 
 
-  resources :showcases
+  resources :showcases, only: [:create, :destroy, :edit]
 
 
   resources :galleries

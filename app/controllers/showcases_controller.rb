@@ -1,4 +1,6 @@
 class ShowcasesController < ApplicationController
+ 
+  before_filter :require_login, only: [:destroy, :new, :create]
   # GET /showcases
   # GET /showcases.json
   def index
@@ -15,7 +17,7 @@ class ShowcasesController < ApplicationController
   def show
     @showcase = Showcase.find(params[:id])
     @gallery = Gallery.find(params[:gallery])
-    @user = Gallery.find(params[:gallery]).user
+    @user = @gallery.user
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @showcase }
@@ -43,11 +45,11 @@ class ShowcasesController < ApplicationController
   # POST /showcases
   # POST /showcases.json
   def create
-    @showcase = Showcase.new(showcase_params)
+    @showcase = current_user.gallery.showcases.build(showcase_params)
 
     respond_to do |format|
       if @showcase.save
-        format.html { redirect_to @showcase, notice: 'Showcase was successfully created.' }
+        format.html { redirect_back_or_to @showcase, notice: 'Showcase was successfully created.' }
         format.json { render json: @showcase, status: :created, location: @showcase }
       else
         format.html { render action: "new" }

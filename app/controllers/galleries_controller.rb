@@ -14,6 +14,7 @@ class GalleriesController < ApplicationController
   # GET /galleries/1.json
   def show
     @gallery = Gallery.find(params[:id])
+    @showcases = @gallery.showcases.paginate(page: params[:page])
     @title = "Gallery"
     @user = @gallery.user
     
