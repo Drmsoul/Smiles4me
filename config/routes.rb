@@ -2,11 +2,14 @@ Blog::Application.routes.draw do
   resources :comments
 
 
-  resources :showcases, only: [:create, :destroy, :edit]
+  resources :showcases, only: [:create, :destroy, :edit, :show] 
 
 
-  resources :galleries
 
+  resources :galleries do
+    resources :showcases
+
+  end
 
   get "password_resets/create"
 
@@ -21,6 +24,17 @@ Blog::Application.routes.draw do
   get "user_sessions/destroy"
 
   resources :users do
+    resource :gallery do
+      resources :showcases
+
+    end
+
+    resources :showcases do
+      member do
+        get :showcases
+      end
+    end
+
     member do
       get :following, :followers
     end

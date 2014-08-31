@@ -13,7 +13,7 @@
               <% if @user.avatar.file? %>
                 <%= image_tag @user.avatar.url(:thumb) %>
               <% else %>
-                <%= image_tag("medium/Noimage.jpeg", size: "150x150", alt: "Avatar", class: "img-circle") %>
+                <%= image_tag("medium/Noimage.jpeg", size: "150x150", alt: "Avatar", class: "img-square") %>
               <% end %>
             </a>
             </br>
@@ -49,8 +49,6 @@
 
             <%= render 'galleries/show' %>
 
-		        <p>...</p>
-		        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
 		      </div>
 		    </div>
 		  </div>  

@@ -15,9 +15,26 @@ class ShowcasesController < ApplicationController
   # GET /showcases/1
   # GET /showcases/1.json
   def show
-    @showcase = Showcase.find(params[:id])
-    @gallery = Gallery.find(params[:gallery])
-    @user = @gallery.user
+
+    if (params[:user_id])
+
+      @user = User.find(params[:user_id])
+      @gallery= @user.gallery
+      @showcase= @gallery.showcases.find(params[:id])
+
+    else
+      @showcase = Showcase.find(params[:id])
+      @gallery = @showcase.gallery
+      @user = @gallery.user
+    end
+    
+
+    #@gallery = @showcase.gallery    
+    
+    #@showcase = Gallery.find(params[:gallery_id]).showcase[:id]
+
+    #@gallery = Gallery.find(params[:gallery])
+    
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @showcase }
@@ -45,12 +62,13 @@ class ShowcasesController < ApplicationController
   # POST /showcases
   # POST /showcases.json
   def create
-    @showcase = current_user.gallery.showcases.build(showcase_params)
 
+    @showcase = current_user.gallery.showcases.build(showcase_params)
+    @user = current_user
     respond_to do |format|
       if @showcase.save
-        format.html { redirect_back_or_to @showcase, notice: 'Showcase was successfully created.' }
-        format.json { render json: @showcase, status: :created, location: @showcase }
+        format.html { redirect_back_or_to @user, notice: 'Showcase was successfully created.' }
+        format.json { render json: @user, status: :created, location: @user }
       else
         format.html { render action: "new" }
         format.json { render json: @showcase.errors, status: :unprocessable_entity }

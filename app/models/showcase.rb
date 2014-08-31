@@ -10,8 +10,8 @@ belongs_to :gallery
 
 
   has_attached_file :canvas, :styles => { 
-  	  :thumb => "150x150>",
-      :square => ["400x400#", :png],
+  	  :thumb => "100x100>",
+      :square => ["160x160#", :png],
       :medium => "700x700>"
       }, 
   					:default_url => "/assets/images/:style/noimage.png"

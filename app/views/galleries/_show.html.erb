@@ -15,12 +15,32 @@
   <%= @gallery.description %>
 </p>
 
+<div>
+<% @gallery.showcases.each do |showcase| %>
+    
 
+            <div class= "col-md-4">
+              <div class="panel panel-primary">
+                <div class="panel-heading" align="center">
+                <td><%= showcase.id %></td>
+                  
+                </div>
+                <%= link_to showcase do%>
+                  <%= image_tag showcase.canvas.url(:square) %>
+                <% end %>
+              </div>
+            </div>
+      
+  <% end %>
+</div>
+<div class= "col-md-12">
+
+<% if @user == current_user %>
 <%= render 'shared/showcase_form' %>
-
-
-
-
-
+<%end %>
 <%= link_to 'Edit', edit_gallery_path(@gallery) %> |
 <%= link_to 'Back', galleries_path %>
+</div>
+
+
+

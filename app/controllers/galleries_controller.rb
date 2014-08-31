@@ -13,7 +13,8 @@ class GalleriesController < ApplicationController
   # GET /galleries/1
   # GET /galleries/1.json
   def show
-    @gallery = Gallery.find(params[:id])
+    @gallery = User.find(params[:user_id]).gallery
+  #  @gallery = Gallery.find(params[:id])
     @showcases = @gallery.showcases.paginate(page: params[:page])
     @title = "Gallery"
     @user = @gallery.user
@@ -89,6 +90,14 @@ class GalleriesController < ApplicationController
       format.html { redirect_to galleries_url }
       format.json { head :no_content }
     end
+  end
+
+
+  def showcases
+    @title = "Showcase for: "
+    @user = User.find(params[:user])
+    @gallery = Gallery.find(params[:id])
+    render 'show_showcase'
   end
 
 

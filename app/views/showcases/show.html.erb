@@ -12,7 +12,9 @@
 
 <p>
   <b>Picture:</b>
-  <%= @showcase.picture %>
+</p>
+<p> 
+  <%= image_tag @showcase.canvas.url(:thumb) %>
 </p>
 
 <p>

@@ -2,7 +2,7 @@
 
 
 
-<%= form_for(@showcase) do |f| %>
+<%= form_for(current_user.gallery.showcase.build) do |f| %>
   <% if @showcase.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@showcase.errors.count, "error") %> prohibited this showcase from being saved:</h2>
