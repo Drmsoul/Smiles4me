@@ -51,9 +51,17 @@ lside {
 }
 .thumbpic {
         text-align:center;
-        display: inline-block;
-     *display:inline; 
-     float: none; 
+
+
+     width: 100%;
+     height: auto;
+}
+
+.thumbimg {
+      max-width: 100%;
+    height: auto;
+
+
 }
 
 .panelmain {
@@ -64,7 +72,10 @@ lside {
 
 }
 
-
+.image_div {
+    
+     background-position: center
+}
 .user_avatars {
   overflow: auto;
   margin-top: 10px;

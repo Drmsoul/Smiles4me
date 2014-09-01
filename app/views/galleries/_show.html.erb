@@ -25,9 +25,12 @@
                 <td><%= showcase.id %></td>
                   
                 </div>
-                <%= link_to showcase do%>
-                  <%= image_tag showcase.canvas.url(:square) %>
-                <% end %>
+                  <div class= "thumbpic">
+                    <%= link_to showcase do%>
+                      <%= image_tag showcase.canvas.url(:square), :class => 'thumbimg' %>
+
+                    <% end %>
+                  </div>
               </div>
             </div>
       
