@@ -1,5 +1,5 @@
 Blog::Application.routes.draw do
-  resources :comments
+  
 
 
   resources :showcases, only: [:create, :destroy, :edit, :show] 
@@ -39,6 +39,8 @@ Blog::Application.routes.draw do
       get :following, :followers
     end
   end
+
+  resources :comments, only: [:create, :destroy, :edit, :show]
 
   resources :documents
 

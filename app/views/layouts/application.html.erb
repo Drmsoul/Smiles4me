@@ -7,18 +7,6 @@
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Bootstrap -->
-    <link href="/assets/bootstrap.css" rel="stylesheet" media = "screen">
-    <link href="/assets/tetravortex.css" rel="stylesheet" media = "screen">
-      <%= csrf_meta_tags %>
-    <script src="/assets/jquery.js"></script>
-       <script>
-	$(document).ready(function(){
- 
-    	$("#welcomebox").fadeIn("slow");
-
-       });
-</script> 
    
   </head>
   <body>
@@ -64,10 +52,10 @@
       </div><!-- /.container-fluid -->
     </nav>
 
-    <p id="notice"><%= flash[:notice] %></p>
+    
+  <div Id= "welcomebox" class="panelmain panel" align= center>
+  <p id="notice"><%= flash[:notice] %></p>
     <p id="alert"><%= flash[:alert] %></p>
-    <div Id= "welcomebox" class="panelmain panel" align= center>
-  
   <%= yield %>
 </div>
   

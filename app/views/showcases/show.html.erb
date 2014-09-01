@@ -32,6 +32,9 @@
   <%= @showcase.visits %>
 </p>
 
+<%= render 'comments/post_form'%>
+<%= render 'comments/comment_list'%>
+
 
 <%= link_to 'Edit', edit_showcase_path(@showcase) %> |
 <%= link_to 'Back', showcases_path %>

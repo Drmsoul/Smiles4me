@@ -97,6 +97,7 @@ class GalleriesController < ApplicationController
     @title = "Showcase for: "
     @user = User.find(params[:user])
     @gallery = Gallery.find(params[:id])
+    @showcases = @gallery.showcases
     render 'show_showcase'
   end
 

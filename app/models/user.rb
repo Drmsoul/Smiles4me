@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
 
     
 
-  has_many :comments
+  has_many :comments, dependent: :destroy
   has_many :relationships, foreign_key: "follower_id", dependent: :destroy
 
   has_many :followed_users, through: :relationships, source: :followed
@@ -56,6 +56,10 @@ class User < ActiveRecord::Base
 
   def unfollow!(other_user)
     relationships.where(followed_id: other_user.id).last.destroy
+  end
+
+  def comment!(comment)
+    comments.create!(content: comment.content, showcase: comment.showcase, likes: comment.likes)
   end
 
   def User.new_remember_token

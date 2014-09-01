@@ -1,0 +1,12 @@
+<% if current_user %>
+  <div id="Commentbox">
+    <%= form_for(current_user.comments.build(showcase: @showcase), remote: true) do |f| %>
+        
+        <div class = "field"> <%= f.text_field :content %></div>
+        <div><%= f.hidden_field :showcase %></div>
+        <%= f.submit "Post", class: "btn btn-large btn-primary" %>
+  <% end %>
+
+
+  </div>
+<% end %>

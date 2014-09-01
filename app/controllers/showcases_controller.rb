@@ -104,6 +104,16 @@ class ShowcasesController < ApplicationController
     end
   end
 
+  def comments
+    @title = "Comments for: "
+    @user = User.find(params[:user_id])
+    @gallery = @user.gallery
+    @showcase= @gallery.showcases.find(:id)
+    @comments = @showcase.comments
+
+    render 'show_showcase'
+  end
+
   private
 
     # Use this method to whitelist the permissible parameters. Example:

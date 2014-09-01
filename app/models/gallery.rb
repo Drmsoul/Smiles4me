@@ -1,7 +1,7 @@
 class Gallery < ActiveRecord::Base
   attr_accessible :description, :id , :user
 	
-
+  has_many :comments, dependent: :destroy
 	has_many :showcases, dependent: :destroy
 	belongs_to :user
 

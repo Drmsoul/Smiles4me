@@ -1,7 +1,10 @@
 class Comment < ActiveRecord::Base
+ attr_accessible :content, :likes, :user, :showcase, :showcase_id
+
   belongs_to :user
   belongs_to :showcase
-  attr_accessible :content, :likes
+  
+  
 
 
 	
