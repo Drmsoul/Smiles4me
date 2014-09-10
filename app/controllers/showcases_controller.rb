@@ -120,6 +120,6 @@ class ShowcasesController < ApplicationController
     # params.require(:person).permit(:name, :age)
     # Also, you can specialize this method with per-user checking of permissible attributes.
     def showcase_params
-      params.require(:showcase).permit(:id,:gallery, :description, :likes, :canvas, :upload_date, :visits)
+      params.require(:showcase).permit(:id, :title,:gallery, :description, :likes, :canvas, :upload_date, :visits)
     end
 end

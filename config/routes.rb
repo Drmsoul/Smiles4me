@@ -26,7 +26,6 @@ Blog::Application.routes.draw do
   resources :users do
     resource :gallery do
       resources :showcases
-
     end
 
     resources :showcases do

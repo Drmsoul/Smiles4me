@@ -18,6 +18,7 @@ skip_before_filter :require_login, only: [:index, :new, :create]
   def show
     @user = User.find(params[:id])
     @gallery = @user.gallery
+    @showcases = @gallery.showcases.paginate(page: params[:page], per_page: 6)
     @showcase = current_user.gallery.showcases.build
     respond_to do |format|
       format.html # show.html.erb

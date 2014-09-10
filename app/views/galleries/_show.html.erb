@@ -16,17 +16,17 @@
 </p>
 
 <div>
-<% @gallery.showcases.each do |showcase| %>
+<% @showcases.each do |showcase| %>
     
 
             <div class= "col-md-4">
               <div class="panel panel-primary">
                 <div class="panel-heading" align="center">
-                <td><%= showcase.id %></td>
+                <td><%= showcase.title %></td>
                   
                 </div>
                   <div class= "thumbpic">
-                    <%= link_to showcase do%>
+                    <%= link_to user_showcase_path(showcase.gallery.user.id ,showcase.id) do%>
                       <%= image_tag showcase.canvas.url(:square), :class => 'thumbimg' %>
 
                     <% end %>
@@ -36,13 +36,13 @@
       
   <% end %>
 </div>
-<div class= "col-md-12">
-
+<div class= "col-md-12"><%= will_paginate @showcases %> </div>
+<div class= "col-md-12 panel">
+<ttitle>Submit new artwork </ttitle>
 <% if @user == current_user %>
 <%= render 'shared/showcase_form' %>
 <%end %>
-<%= link_to 'Edit', edit_gallery_path(@gallery) %> |
-<%= link_to 'Back', galleries_path %>
+
 </div>
 
 

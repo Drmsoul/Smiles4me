@@ -18,7 +18,7 @@ class GalleriesController < ApplicationController
     @showcases = @gallery.showcases.paginate(page: params[:page])
     @title = "Gallery"
     @user = @gallery.user
-    
+    @showcase = current_user.gallery.showcases.build
 
     respond_to do |format|
       format.html # show.html.erb

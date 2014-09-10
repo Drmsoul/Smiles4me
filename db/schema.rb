@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(:version => 20140823222442) do
 
   create_table "showcases", :force => true do |t|
     t.integer  "gallery_id"
+    t.string   "title"
     t.string   "description"
     t.string   "upload_date"
     t.integer  "likes"
@@ -72,6 +73,7 @@ ActiveRecord::Schema.define(:version => 20140823222442) do
     t.datetime "canvas_updated_at"
   end
 
+  add_index "showcases", ["gallery_id", "id"], :name => "index_showcases_on_gallery_id_and_id", :unique => true
   add_index "showcases", ["gallery_id"], :name => "index_showcases_on_gallery_id"
   add_index "showcases", ["id"], :name => "index_showcases_on_id"
 
