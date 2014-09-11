@@ -1,0 +1,9 @@
+<% unless current_user?(@user) %>
+  <div id="like_form">
+  <% if current_user.likes?(showcase) %>
+    <%= render 'shared/unlike', :showcase => showcase %>
+  <% else %>
+    <%= render 'shared/like', :showcase => showcase %>
+  <% end %>
+  </div>
+<% end %>	
