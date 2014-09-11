@@ -18,8 +18,14 @@ class User < ActiveRecord::Base
 
   has_many :followers, through: :reverse_relationships, source: :follower
 
+  has_many :likes, dependent: :destroy
 
+  has_many :liked_showcases, through: :likes, source: :showcase
  
+
+
+
+
   has_one :gallery
   
   validates :username, length: { minimum: 4 }
@@ -61,6 +67,20 @@ class User < ActiveRecord::Base
   def comment!(comment)
     comments.create!(content: comment.content, showcase: comment.showcase, likes: comment.likes)
   end
+
+
+  def like!(showcase)
+    likes.create!(showcase_id: showcase.id)
+  end
+
+  def likes?(showcase)
+    likes.where(showcase_id: showcase.id).exists?
+  end
+
+  def unlike!(showcase)
+    likes.where(showcase_id: showcase.id).last.destroy
+  end
+
 
   def User.new_remember_token
     SecureRandom.urlsafe_base64
