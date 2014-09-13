@@ -2,8 +2,6 @@
 
 <div class="panel panel-default centerpane">
   <div class="panel-body">
-    
-
     <%= form_for @user, :html => { :multipart => true }  do |f| %>
       <% if @user.errors.any? %>
         <div id="error_explanation">
@@ -27,51 +25,38 @@
        <b> <%= f.text_field :email,class: "tb", :placeholder => "Email" %></b>
       </div>
 
-    <div class="field">
-       
-       <%= f.password_field :password, class: "tb", :placeholder => "Password" %>
-    </div>
-    <div class="field">
-       
-       <%= f.password_field :password_confirmation, class: "tb", :placeholder => "Password Confirmation" %>
-    </div>
+      <div class="field">
+         
+         <%= f.password_field :password, class: "tb", :placeholder => "Password" %>
+      </div>
+      <div class="field">
+         
+         <%= f.password_field :password_confirmation, class: "tb", :placeholder => "Password Confirmation" %>
+      </div>
 
-    <% if current_user %>
+      <% if current_user %>
+        <% if @user.avatar.file? %>
+          <div>
+            <ul class="span5">
+              <a href="#" class="thumbpic thumbnail">
+                <%= image_tag @user.avatar.url(:thumb) %>
+              </a>
+            </ul>
+          </div> 
+        <%end%>
 
-      <% if @user.avatar.file? %>
-        
-            <div>
-              <ul class="span5">
-                <a href="#" class="thumbpic thumbnail">
-                  <%= image_tag @user.avatar.url(:thumb) %>
-                </a>
-              </ul>
-            </div>
-        
-        
-
-      <%end%>
-
-      
-
-      <div class="panel panel-default">
-        <div class="panel-body">
-          <%= f.file_field :avatar %>
-        </div>
-      </div>  
-      
-
-    <% end %>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <%= f.file_field :avatar %>
+          </div>
+        </div>  
+      <% end %>
 
       <div class="actions">
         <%= f.submit "Send", class: "btn btn-primary btn-lg" %>
         <%= link_to 'Back',:back , class: "btn btn-primary btn-lg"%>
-
       </div>
     <% end %>
-
-
-
   </div>
 </div>
 
