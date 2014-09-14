@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140823222442) do
+ActiveRecord::Schema.define(:version => 20140911003926) do
 
   create_table "articles", :force => true do |t|
     t.string   "title"
@@ -46,6 +46,17 @@ ActiveRecord::Schema.define(:version => 20140823222442) do
 
   add_index "galleries", ["id"], :name => "index_galleries_on_id"
   add_index "galleries", ["user_id"], :name => "index_galleries_on_user_id"
+
+  create_table "likes", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "showcase_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "likes", ["showcase_id"], :name => "index_likes_on_showcase_id"
+  add_index "likes", ["user_id", "showcase_id"], :name => "index_likes_on_user_id_and_showcase_id", :unique => true
+  add_index "likes", ["user_id"], :name => "index_likes_on_user_id"
 
   create_table "relationships", :force => true do |t|
     t.integer  "follower_id"

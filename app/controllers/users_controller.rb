@@ -101,6 +101,13 @@ skip_before_filter :require_login, only: [:index, :new, :create]
     render 'show_follow'
   end
 
+  def liking
+    @title = "Liking"
+    @user = User.find(params[:id])
+    @showcases = @user.likes.paginate(page: params[:page])
+    render 'show_likes'
+  end
+
   def showcases
     @title = "Gallery"
     @user = User.find(params[:id])

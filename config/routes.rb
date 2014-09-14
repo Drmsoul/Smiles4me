@@ -2,7 +2,7 @@ Blog::Application.routes.draw do
   
 
 
-  resources :likes
+  resources :likes, only: [:create, :destroy]
 
 
   resources :showcases, only: [:create, :destroy, :edit, :show] 

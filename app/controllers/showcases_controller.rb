@@ -56,7 +56,18 @@ class ShowcasesController < ApplicationController
 
   # GET /showcases/1/edit
   def edit
-    @showcase = Showcase.find(params[:id])
+    #@showcase = Showcase.find(params[:id])
+      if (params[:user_id])
+
+      @user = User.find(params[:user_id])
+      @gallery= @user.gallery
+      @showcase= @gallery.showcases.find(params[:id])
+
+    else
+      @showcase = Showcase.find(params[:id])
+      @gallery = @showcase.gallery
+      @user = @gallery.user
+    end
   end
 
   # POST /showcases

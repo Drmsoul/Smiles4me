@@ -1,8 +1,12 @@
 class Showcase < ActiveRecord::Base
-  attr_accessible :id, :title, :gallery, :description, :likes, :canvas, :upload_date, :visits, :comments
+  attr_accessible :id, :title, :gallery, :description, :canvas, :upload_date, :visits, :comments
 
 
 has_many :comments, dependent: :destroy
+
+has_many :likes
+
+has_many :likers, through: :likes, source: :user
 
 belongs_to :gallery
 

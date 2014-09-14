@@ -13,28 +13,10 @@
   <%= @gallery.description %>
 </p>
 
+<div id= "likeable_list">
+<%= render 'shared/showcase_list' %>
 <div>
-<% @showcases.each do |showcase| %>
-    
 
-            <div class= "col-md-4">
-              <div class="panel panel-primary">
-                <div class="panel-heading" align="center">
-                <td><%= showcase.title %></td>
-                  
-                </div>
-                  <div class= "thumbpic">
-                    <%= link_to user_showcase_path(showcase.gallery.user.id ,showcase.id) do%>
-                    <%= image_tag showcase.canvas.url(:square), :class => 'thumbimg' %>
-
-                    <% end %>
-                  </div>
-              </div>
-            </div>
-      
-  <% end %>
-</div>
-<div class= "col-md-12"><%= will_paginate @showcases, renderer: BootstrapPagination::Rails %> </div>
 <div class= "col-md-12 panel">
 <ttitle>Submit new artwork </ttitle>
 <% if @user == current_user %>

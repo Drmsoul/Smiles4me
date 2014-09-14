@@ -1,0 +1,5 @@
+<%= form_for(current_user.likes.build(showcase_id: @showcase.id),
+             remote: true) do |f| %>
+  <div><%= f.hidden_field :showcase_id %></div>
+  <%= f.submit "Like", class: "btn btn-large btn-primary" %>
+<% end %>
