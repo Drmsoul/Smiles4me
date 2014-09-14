@@ -115,7 +115,6 @@ skip_before_filter :require_login, only: [:index, :new, :create]
     render 'show_gallery'
   end
 
-
   private
 
     # Use this method to whitelist the permissible parameters. Example:
