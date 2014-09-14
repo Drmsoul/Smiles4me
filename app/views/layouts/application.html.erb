@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
   <head>
@@ -14,23 +13,23 @@
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-            <span class="sr-only">Toggle navigation</span>
-          </button>
-    	    <%= link_to "Smiles4Us", root_path , class: "navbar-brand" %>      
+          <ul class="nav navbar-nav">
+            <% if current_user %>
+              <li><%= link_to "Smiles4Us", root_path, class: "navbar-brand" %></li>
+              <li><%= link_to "Show", current_user %></li>
+            <% else %>
+              <li><%= link_to "Smiles4Us", root_path , class: "navbar-brand" %></li>
+            <% end %>
+          </ul>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Principal</a></li>
-            <li><a href="#">Perfil</a></li>
-          </ul>
           <form class="navbar-form navbar-right" role="search">
             <ul class="list-inline navbar-right">
               <li>
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Search">
+                  <input type="text" class="form-control" placeholder="Buscar">
                   <button type="submit" class="btn btn-default">Buscar</button>
                 </div>
               </li>

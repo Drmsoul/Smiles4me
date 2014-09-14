@@ -1,3 +1,12 @@
+<% if current_user %>
+  <h1>Inicio Usuario</h1>
+<% else %>
+  <div class="jumbotron">
+    <h1>Bienvenido a Smiles 4 Us</h1>
+    <h4>Iniciar Sesi&oacute;n</h4>
+    <%= render "user_sessions/form" %>
+  </div>
+<% end %>
 <h1>Listing users</h1>
 
 <table>

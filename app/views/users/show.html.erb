@@ -3,12 +3,10 @@
 
 
 <div class="row">
-  
   <lside><div class="col-md-3">
   	 <ul class="span5">
-
         <div class="panel panel-primary">
-          <div class="panel-heading" align="center">
+          <div class="panel-heading">
             <a href="#" class="thumbpic thumbnail">
               <% if @user.avatar.file? %>
                 <%= image_tag @user.avatar.url(:thumb) %>
