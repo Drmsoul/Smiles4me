@@ -7,6 +7,8 @@
     <%= render "user_sessions/form" %>
   </div>
 <% end %>
+
+<% unless current_user.nil? || current_user.level < 101%>
 <h1>Listing users</h1>
 
 <table>
@@ -17,16 +19,16 @@
     <th></th>
     <th></th>
   </tr>
-
-<% @users.each do |user| %>
-  <tr>
-    <td><%= user.email %></td>
-    <td><%= user.password %></td>
-    <td><%= link_to 'Show', user %></td>
-    <td> &nbsp; &nbsp;<%= link_to 'Edit', edit_user_path(user) %></td>
-    <td> &nbsp; &nbsp;<%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= user.email %></td>
+      <td><%= user.password %></td>
+      <td><%= link_to 'Show', user %></td>
+      <td> &nbsp; &nbsp;<%= link_to 'Edit', edit_user_path(user) %></td>
+      <td> &nbsp; &nbsp;<%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+<%end%>
 </table>
 
 <br />

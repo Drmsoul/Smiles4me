@@ -22,13 +22,16 @@ class LikesController < ApplicationController
   # POST /likes
   # POST /likes.json
   def create
+
     @showcase = Showcase.find(params[:like][:showcase_id])
     @showcases = Gallery.find(@showcase.gallery.id).showcases.paginate(page: params[:page], per_page: 6)
     @user = @showcase.gallery.user
-    current_user.like!(@showcase)
+    unless current_user == @user
+      current_user.like!(@showcase)
+    end
     respond_to do |format|
       
-        format.html { redirect_to @user }
+        format.html { redirect_to :back }
         format.js
     end
   end

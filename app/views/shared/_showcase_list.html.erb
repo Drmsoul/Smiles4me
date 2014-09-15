@@ -1,5 +1,4 @@
-
-
+<div id= "likeable_list">
 
 <% @showcases.each do |showcase| %>
             <div class= "col-md-3 block">
@@ -16,19 +15,27 @@
 
                   <% end %>
                   <div class= "bottom">
+                      <% unless User.find(showcase.gallery.user) == current_user %>
+                      
+                      <span class= "btn btn-primary hstack"><%= showcase.likes.count%></span>
                       <%= render 'shared/like_form', :showcase => showcase %>
-                    
-                    <div class = "hstack">
-                      <%= link_to showcase, method: :delete, class: "btn btn-large btn-primary", data: { confirm: 'Are you sure?' },:disable_with => 'loading...' do%>
-                        <span class="glyphicon glyphicon-trash"></span>
                       <%end%>
+
+                    <%if current_user == showcase.gallery.user %>
+                      <div class = "hstack">
+                        <%= link_to showcase, method: :delete, class: "btn btn-large btn-primary", data: { confirm: 'Are you sure?' },:disable_with => 'loading...' do%>
+                          <span class="glyphicon glyphicon-trash"></span>
+                        <%end%>
                       </div>
-                    </div>
+                    <%end%>
+
                   </div>
+                </div>
               </div>
             </div>
-
       
   <% end %>
-
 <div class= "col-md-12"><%= will_paginate @showcases, renderer: BootstrapPagination::Rails %> </div>
+
+
+</div>

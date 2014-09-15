@@ -62,6 +62,7 @@ class ShowcasesController < ApplicationController
   # GET /showcases/1/edit
   def edit
     #@showcase = Showcase.find(params[:id])
+
       if (params[:user_id])
 
       @user = User.find(params[:user_id])
@@ -96,10 +97,12 @@ class ShowcasesController < ApplicationController
   # PATCH/PUT /showcases/1.json
   def update
     @showcase = Showcase.find(params[:id])
+    @user= @showcase.gallery.user
+
     if current_user== @showcase.gallery.user || current_user.level >100
       respond_to do |format|
         if @showcase.update_attributes(showcase_params)
-          format.html { redirect_to @showcase, notice: 'Showcase was successfully updated.' }
+          format.html { redirect_to user_showcase_path(@showcase.gallery.user.id ,@showcase.id), notice: 'Showcase was successfully updated.' }
           format.json { head :no_content }
         else
           format.html { render action: "edit" }

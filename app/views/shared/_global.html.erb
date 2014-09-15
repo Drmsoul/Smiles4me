@@ -1,7 +1,41 @@
-<div>
-	
-	
-	<%= render 'shared/showcase_list'%>
+<div class="row">
 	
 
+	<div class="col-md-3 hstack">
+		<div class= "extend panel panel-primary">
+			<div class="panel-heading" align="center">
+
+            </br>
+            <div class= "centered">
+              <minititle>
+                <span class="glyphicon glyphicon-user"></span>
+                Galleries!
+              </minititle>
+
+            </div>
+            </br>
+            <ul class="list-group">
+              <a href="<%= root_path %>">
+                <li class="list-group-item">
+                  <span class="badge"> 
+                            <strong>
+                             <%= Gallery.all.count %>      
+                            </strong>
+                  </span>
+                  New Submissions!
+                </li></a>
+   
+              </ul>
+          </div>
+
+		</div>
+
+
+
+	</div>
+	<div class="col-md-9 hstack">
+
+		<%= render 'shared/showcase_list'%>
+	
+	</div>
 </div>

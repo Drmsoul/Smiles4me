@@ -2,7 +2,9 @@
   <h3>Hola <%= current_user.username %></h3>
   	<%= render 'shared/global' %>
 <% else %>
-  <h1>Bienvenido a Smiles4Us</h1>
-  <h3>Iniciar Sesion</h3>
-  <%= render 'user_sessions/form' %>
+  <div class="jumbotron">
+    <h1>Bienvenido a Smiles 4 Us</h1>
+    <h4>Iniciar Sesi&oacute;n</h4>
+    <%= render "user_sessions/form" %>
+  </div>
 <% end %>

@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+
 
 
 
@@ -24,11 +24,11 @@
               </minititle>
 
             </div>
-          </br>
-          <%= link_to "Edit Profile", edit_user_path(current_user.id) %>
+            </br>
+            <%= link_to "Edit Profile", edit_user_path(current_user.id) %>
           </div>
-          <%= render 'shared/stats' %>
-          <%= render 'follow_form' %>
+            <%= render 'shared/stats' %>
+            <%= render 'follow_form' %>
         </div>
       </ul>
     </div>
@@ -56,3 +56,4 @@
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
+</div>
