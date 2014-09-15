@@ -1,5 +1,5 @@
 <% unless current_user?(@user) %>
-  <div id="like_form">
+  <div id="like_form" class="hstack">
   <% if current_user.likes?(showcase) %>
     <%= render 'shared/unlike', :showcase => showcase %>
   <% else %>

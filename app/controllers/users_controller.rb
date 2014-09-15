@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
 
-skip_before_filter :require_login, only: [:index, :new, :create]
+skip_before_filter :require_login, only: [:index, :new, :create, :main]
 
   def index
     @users = User.all
@@ -17,6 +17,7 @@ skip_before_filter :require_login, only: [:index, :new, :create]
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
+    @title = @user.username + ' Profile'
     @gallery = @user.gallery
     @showcases = @gallery.showcases.paginate(page: params[:page], per_page: 6)
     @showcase = current_user.gallery.showcases.build
@@ -25,6 +26,17 @@ skip_before_filter :require_login, only: [:index, :new, :create]
       format.json { render json: @user }
     end
   end
+
+  def main
+    @showcases = Showcase.where('').paginate(page: params[:page], per_page: 6)
+
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @user }
+    end
+  end
+
 
   # GET /users/new
   # GET /users/new.json
@@ -46,7 +58,7 @@ skip_before_filter :require_login, only: [:index, :new, :create]
   # POST /users.json
   def create
     @user = User.new(user_params)
-
+    @user.level = 1
 
 
     respond_to do |format|

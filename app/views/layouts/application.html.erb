@@ -1,7 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Smiles4Us</title>
+    <%unless @title ==nil%>
+
+      <title> <%= @title %> </title>
+    <%else%>
+      <title>  Smiles4Us </title>
+
+    <%end%>
           <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
@@ -16,7 +22,7 @@
           <ul class="nav navbar-nav">
             <% if current_user %>
               <li><%= link_to "Smiles4Us", root_path, class: "navbar-brand" %></li>
-              <li><%= link_to "Show", current_user %></li>
+              <li><%= link_to "Perfil", current_user %></li>
             <% else %>
               <li><%= link_to "Smiles4Us", root_path , class: "navbar-brand" %></li>
             <% end %>

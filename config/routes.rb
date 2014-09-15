@@ -102,11 +102,14 @@ Blog::Application.routes.draw do
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
    #root :to => 'welcome#index'
-   root :to => 'users#index'
+   root :to => 'users#main'
    resources :user_sessions
    
+
+
    resources :password_resets
 
+   
    get 'login' => 'user_sessions#new', :as => :login
    post 'logout' => 'user_sessions#destroy', :as => :logout
 

@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :id, :username,:password_confirmation,:password,:crypted_password, :email, :salt, :avatar, :gallery
+  attr_accessible :id, :username,:password_confirmation,:password,:crypted_password, :email, :salt, :avatar, :gallery, :level
  
   after_create :make_gallery
 

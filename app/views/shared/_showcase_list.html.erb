@@ -2,18 +2,22 @@
 
 
 <% @showcases.each do |showcase| %>
-            <div class= "col-md-4">
-              <div class="panel panel-primary">
+            <div class= "col-md-4 block">
+              <div class="panel panel-primary expand">
                 <div class="panel-heading" align="center">
                 <td><%= showcase.title %></td>
                   
                 </div>
-                  <div class= "thumbpic">
+                  <div class= "thumbpic padded">
                     <%= link_to user_showcase_path(showcase.gallery.user.id ,showcase.id) do%>
                     <%= image_tag showcase.canvas.url(:square), :class => 'thumbimg' %>
 
                     <% end %>
-                    <%= render 'shared/like_form', :showcase => showcase %>
+                    <div class= "bottom">
+                      <%= render 'shared/like_form', :showcase => showcase %>
+                      <%= button_to 'DELETE', showcase, method: :delete, class: "btn btn-large btn-primary", data: { confirm: 'Are you sure?' }%>
+
+                    </div>
                   </div>
               </div>
             </div>

@@ -86,3 +86,36 @@ lside {
   margin-top: 10px;
 
 }
+
+.expand{
+
+  height: 100%;
+  width:100%;
+
+}
+
+.padded {
+
+padding-top: 10px;
+padding-bottom: 20px;
+}
+
+.hstack{
+
+  float: left;
+
+}
+
+.bottom{
+
+
+  position: absolute; bottom: 0;
+
+}
+
+.block {
+
+  height: 250px;
+  margin-top: 10px;
+  
+}

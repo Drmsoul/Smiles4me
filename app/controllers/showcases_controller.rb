@@ -1,14 +1,19 @@
 class ShowcasesController < ApplicationController
  
   before_filter :require_login, only: [:destroy, :new, :create]
+
+
+
   # GET /showcases
   # GET /showcases.json
   def index
-    @showcases = Showcase.all
+    if current_user== current_user.level >100
+      @showcases = Showcase.all
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @showcases }
+      respond_to do |format|
+        format.html # index.html.erb
+        format.json { render json: @showcases }
+      end
     end
   end
 
@@ -91,14 +96,15 @@ class ShowcasesController < ApplicationController
   # PATCH/PUT /showcases/1.json
   def update
     @showcase = Showcase.find(params[:id])
-
-    respond_to do |format|
-      if @showcase.update_attributes(showcase_params)
-        format.html { redirect_to @showcase, notice: 'Showcase was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @showcase.errors, status: :unprocessable_entity }
+    if current_user== @showcase.gallery.user || current_user.level >100
+      respond_to do |format|
+        if @showcase.update_attributes(showcase_params)
+          format.html { redirect_to @showcase, notice: 'Showcase was successfully updated.' }
+          format.json { head :no_content }
+        else
+          format.html { render action: "edit" }
+          format.json { render json: @showcase.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -107,11 +113,13 @@ class ShowcasesController < ApplicationController
   # DELETE /showcases/1.json
   def destroy
     @showcase = Showcase.find(params[:id])
-    @showcase.destroy
+    if current_user== @showcase.gallery.user || current_user.level >100
+      @showcase.destroy
 
-    respond_to do |format|
-      format.html { redirect_to showcases_url }
-      format.json { head :no_content }
+      respond_to do |format|
+        format.html { redirect_to :back}
+        format.json { head :no_content }
+      end
     end
   end
 

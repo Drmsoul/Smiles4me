@@ -7,6 +7,8 @@ gem 'autoprefixer-rails'
 gem 'thin'
 gem 'strong_parameters'
 gem 'will_paginate', '~> 3.0'
+gem 'will_paginate-bootstrap'
+
 #gem 'mysql2'
 
 gem 'rails_12factor', group: :production

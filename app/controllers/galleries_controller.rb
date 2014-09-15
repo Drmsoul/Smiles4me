@@ -2,11 +2,13 @@ class GalleriesController < ApplicationController
   # GET /galleries
   # GET /galleries.json
   def index
-    @galleries = Gallery.all
+    if current_user== @showcase.gallery.user || current_user.level >100
+      @galleries = Gallery.all
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @galleries }
+      respond_to do |format|
+        format.html # index.html.erb
+        format.json { render json: @galleries }
+      end
     end
   end
 
@@ -83,12 +85,16 @@ class GalleriesController < ApplicationController
   # DELETE /galleries/1
   # DELETE /galleries/1.json
   def destroy
-    @gallery = Gallery.find(params[:id])
-    @gallery.destroy
+    if current_user.level >100
 
-    respond_to do |format|
-      format.html { redirect_to galleries_url }
-      format.json { head :no_content }
+      @gallery = Gallery.find(params[:id])
+      @gallery.destroy
+      
+
+      respond_to do |format|
+        format.html { redirect_to galleries_url }
+        format.json { head :no_content }
+      end
     end
   end
 
@@ -101,6 +107,11 @@ class GalleriesController < ApplicationController
     render 'show_showcase'
   end
 
+  def global
+    @Newest = Showcases.all.reverse
+
+
+  end
 
 
   private
