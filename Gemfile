@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'google-analytics-rails'
 gem 'rails', '3.2.16'
 gem "paperclip", "~> 4.1"
 gem 'bootstrap-sass', '~> 3.2.0'

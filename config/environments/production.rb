@@ -1,6 +1,9 @@
 Blog::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
+  # replace this with your tracker code
+GA.tracker = "UA-54802523-1"
+GA.script_source = :doubleclick
   # Code is not reloaded between requests
   config.cache_classes = true
 
