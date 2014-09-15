@@ -1,20 +1,19 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Id:</b>
-  <%= @showcase.id %>
-</p>
+
+<div class= "jumbotron">
 
 <p>
-  <b>Description:</b>
-  <%= @showcase.description %>
+  
+  <h1><%= @showcase.title %></h1>
 </p>
-
+by <%= link_to user_path(@showcase.gallery.user) do%>
+    <span class="glyphicon glyphicon-user"></span><b><%= @showcase.gallery.user.username%></b>
+   <%end%> 
 <p>
-  <b>Picture:</b>
-</p>
+
 <p> 
-  <%= image_tag @showcase.canvas.url(:thumb) %>
+  <%= image_tag @showcase.canvas.url(:original) %>
 </p>
 
 <p>
@@ -24,13 +23,14 @@
 
 <p>
   <b>Likes:</b>
-  <%= @showcase.likes %>
+  <%= @showcase.likes.count %>
 </p>
 
 <p>
   <b>Visits:</b>
   <%= @showcase.visits %>
 </p>
+</div>
 
 <%= render 'comments/post_form'%>
 <%= render 'comments/comment_list'%>
