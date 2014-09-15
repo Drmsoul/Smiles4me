@@ -3,10 +3,12 @@
 
 
 <div class="row">
+  
   <lside><div class="col-md-3">
   	 <ul class="span5">
+
         <div class="panel panel-primary">
-          <div class="panel-heading">
+          <div class="panel-heading" align="center">
             <a href="#" class="thumbpic thumbnail">
               <% if @user.avatar.file? %>
                 <%= image_tag @user.avatar.url(:thumb) %>
@@ -37,11 +39,7 @@
 		  <div class="col-sm-6 col-md-12">
 		    <div class="thumbnail">
 		      <div class="caption">
-            <ul class="nav nav-pills">
-              <li class="active"><a href="#">Home</a></li>
-              <li><a href="#">Profile</a></li>
-              <li><a href="#">Messages</a></li>
-            </ul>
+
 
 		        <h3>Galleries</h3>
 
