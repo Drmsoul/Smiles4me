@@ -24,7 +24,13 @@ class LikesController < ApplicationController
   def create
 
     @showcase = Showcase.find(params[:like][:showcase_id])
-    @showcases = Gallery.find(@showcase.gallery.id).showcases.paginate(page: params[:page], per_page: 6)
+
+    if @title == nil
+      @showcases = Showcase.where('').paginate(page: params[:page], per_page: 6)
+    else
+
+      @showcases = Gallery.find(@showcase.gallery.id).showcases.paginate(page: params[:page], per_page: 6)
+     end
     @user = @showcase.gallery.user
     unless current_user == @user
       current_user.like!(@showcase)

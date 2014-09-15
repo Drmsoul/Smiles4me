@@ -25,7 +25,12 @@
 
             </div>
             </br>
-            <%= link_to "Edit Profile", edit_user_path(current_user.id) %>
+            <%if current_user == @user%>
+            <%= link_to "Edit my profile", edit_user_path(current_user.id) %>
+            <%end%>
+            <%if current_user.level>100%>
+                <%= link_to "Edit this profile", edit_user_path(@user.id) %>
+            <%end%>
           </div>
             <%= render 'shared/stats' %>
             <%= render 'follow_form' %>

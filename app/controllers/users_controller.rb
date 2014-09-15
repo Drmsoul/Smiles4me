@@ -19,7 +19,7 @@ skip_before_filter :require_login, only: [:index, :new, :create, :main]
     @user = User.find(params[:id])
     @title = @user.username + ' Profile'
     @gallery = @user.gallery
-    @showcases = @gallery.showcases.paginate(page: params[:page], per_page: 6)
+    @showcases = @gallery.showcases.paginate(page: params[:page], per_page: 8)
     @showcase = current_user.gallery.showcases.build
     respond_to do |format|
       format.html # show.html.erb
@@ -28,7 +28,7 @@ skip_before_filter :require_login, only: [:index, :new, :create, :main]
   end
 
   def main
-    @showcases = Showcase.where('').paginate(page: params[:page], per_page: 6)
+    @showcases = Showcase.where('').paginate(page: params[:page], per_page: 8)
 
 
     respond_to do |format|
@@ -63,7 +63,7 @@ skip_before_filter :require_login, only: [:index, :new, :create, :main]
 
     respond_to do |format|
       if @user.save
-	     redirect_to :users, notice: 'User was successfully created'
+	     format.html{ redirect_back_or_to root_path, notice: 'User was successfully created'}
       else
         format.html { render action: "new" }
         format.json { render json: @user.errors, status: :unprocessable_entity }

@@ -5,5 +5,6 @@ private
   def not_authenticated
   redirect_to login_path, alert: "Please login first"
   end
+@title == nil
 
 end
